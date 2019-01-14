@@ -20,6 +20,11 @@ class HomeController
     public function index()
     {
         $posts = $this->db->getAll('posts');
-        echo $this->engine->render('homepage', ['postsView' => $posts]);
+        echo $this->engine->render('homepage', ['postsView' => $posts, 'title'=>'Блог']);
+    }
+    public function post($id)
+    {
+        $post = $this->db->getOne('posts', $id);
+        echo $this->engine->render('post/post', ['postView' => $post]);
     }
 }

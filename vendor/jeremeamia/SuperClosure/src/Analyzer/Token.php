@@ -4,7 +4,7 @@
  * A Token object represents and individual token parsed from PHP code.
  *
  * Each Token object is a normalized token created from the result of the
- * `get_token_all()`. function, which is part of PHP's tokenizer.
+ * `get_token_all()`. function, which is partials of PHP's tokenizer.
  *
  * @link http://us2.php.net/manual/en/tokens.php
  */

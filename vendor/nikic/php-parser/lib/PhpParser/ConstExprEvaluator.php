@@ -50,7 +50,7 @@ class ConstExprEvaluator
      * Thrown Errors, warnings or notices will be converted into a ConstExprEvaluationException.
      * The original source of the exception is available through getPrevious().
      *
-     * If some part of the expression cannot be evaluated, the fallback evaluator passed to the
+     * If some partials of the expression cannot be evaluated, the fallback evaluator passed to the
      * constructor will be invoked. By default, if no fallback is provided, an exception of type
      * ConstExprEvaluationException is thrown.
      *
@@ -85,7 +85,7 @@ class ConstExprEvaluator
      * May generate Error exceptions, warnings or notices. Use evaluateSilently() to convert these
      * into a ConstExprEvaluationException.
      *
-     * If some part of the expression cannot be evaluated, the fallback evaluator passed to the
+     * If some partials of the expression cannot be evaluated, the fallback evaluator passed to the
      * constructor will be invoked. By default, if no fallback is provided, an exception of type
      * ConstExprEvaluationException is thrown.
      *

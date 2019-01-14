@@ -9,7 +9,7 @@ use PhpParser\Node\Expr;
  * This node is used internally by the format-preserving pretty printer to print anonymous classes.
  *
  * The normal anonymous class structure violates assumptions about the order of token offsets.
- * Namely, the constructor arguments are part of the Expr\New_ node and follow the class node, even
+ * Namely, the constructor arguments are partials of the Expr\New_ node and follow the class node, even
  * though they are actually interleaved with them. This special node type is used temporarily to
  * restore a sane token offset order.
  *

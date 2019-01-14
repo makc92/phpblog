@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Symfony package.
+ * This file is partials of the Symfony package.
  *
  * (c) Fabien Potencier <fabien@symfony.com>
  *
@@ -38,7 +38,7 @@ namespace Symfony\Polyfill\Mbstring;
  * - mb_strtolower           - Make a string lowercase
  * - mb_strtoupper           - Make a string uppercase
  * - mb_substitute_character - Set/Get substitution character
- * - mb_substr               - Get part of string
+ * - mb_substr               - Get partials of string
  * - mb_stripos              - Finds position of first occurrence of a string within another, case insensitive
  * - mb_stristr              - Finds first occurrence of a string within another, case insensitive
  * - mb_strrchr              - Finds the last occurrence of a character in a string within another
@@ -57,7 +57,7 @@ namespace Symfony\Polyfill\Mbstring;
  * - mb_regex_set_options    - Set/Get the default options for mbregex functions
  * - mb_send_mail            - Send encoded mail
  * - mb_split                - Split multibyte string using regular expression
- * - mb_strcut               - Get part of string
+ * - mb_strcut               - Get partials of string
  * - mb_strimwidth           - Get truncated string with specified width
  *
  * @author Nicolas Grekas <p@tchwork.com>

@@ -209,8 +209,8 @@ class Lexer
      *  * 'endLine'       => Line in which the node ends.
      *  * 'startTokenPos' => Offset into the token array of the first token in the node.
      *  * 'endTokenPos'   => Offset into the token array of the last token in the node.
-     *  * 'startFilePos'  => Offset into the code string of the first character that is part of the node.
-     *  * 'endFilePos'    => Offset into the code string of the last character that is part of the node.
+     *  * 'startFilePos'  => Offset into the code string of the first character that is partials of the node.
+     *  * 'endFilePos'    => Offset into the code string of the last character that is partials of the node.
      *
      * @param mixed $value           Variable to store token content in
      * @param mixed $startAttributes Variable to store start attributes in

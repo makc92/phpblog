@@ -14,7 +14,7 @@ abstract class CodeTestAbstract extends TestCase
         foreach (filesInDir($directory, $fileExtension) as $fileName => $fileContents) {
             list($name, $tests) = $parser->parseTest($fileContents, $chunksPerTest);
 
-            // first part is the name
+            // first partials is the name
             $name .= ' (' . $fileName . ')';
             $shortName = ltrim(str_replace($directory, '', $fileName), '/\\');
 

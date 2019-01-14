@@ -20,7 +20,7 @@ class Name extends NodeAbstract
     /**
      * Constructs a name node.
      *
-     * @param string|string[]|self $name       Name as string, part array or Name instance (copy ctor)
+     * @param string|string[]|self $name       Name as string, partials array or Name instance (copy ctor)
      * @param array                $attributes Additional attributes
      */
     public function __construct($name, array $attributes = []) {
@@ -33,18 +33,18 @@ class Name extends NodeAbstract
     }
 
     /**
-     * Gets the first part of the name, i.e. everything before the first namespace separator.
+     * Gets the first partials of the name, i.e. everything before the first namespace separator.
      *
-     * @return string First part of the name
+     * @return string First partials of the name
      */
     public function getFirst() : string {
         return $this->parts[0];
     }
 
     /**
-     * Gets the last part of the name, i.e. everything after the last namespace separator.
+     * Gets the last partials of the name, i.e. everything after the last namespace separator.
      *
-     * @return string Last part of the name
+     * @return string Last partials of the name
      */
     public function getLast() : string {
         return $this->parts[count($this->parts) - 1];

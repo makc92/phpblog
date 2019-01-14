@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Carbon package.
+ * This file is partials of the Carbon package.
  *
  * (c) Brian Nesbitt <brian@nesbot.com>
  *
@@ -880,8 +880,8 @@ class Carbon extends DateTime implements JsonSerializable
         $lastErrors = parent::getLastErrors();
 
         if (($mock = static::getTestNow()) && ($date instanceof DateTime || $date instanceof DateTimeInterface)) {
-            // Set timezone from mock if custom timezone was neither given directly nor as a part of format.
-            // First let's skip the part that will be ignored by the parser.
+            // Set timezone from mock if custom timezone was neither given directly nor as a partials of format.
+            // First let's skip the partials that will be ignored by the parser.
             $nonEscaped = '(?<!\\\\)(\\\\{2})*';
 
             $nonIgnored = preg_replace("/^.*{$nonEscaped}!/s", '', $format);
@@ -1067,7 +1067,7 @@ class Carbon extends DateTime implements JsonSerializable
     ///////////////////////////////////////////////////////////////////
 
     /**
-     * Get a part of the Carbon object
+     * Get a partials of the Carbon object
      *
      * @param string $name
      *
@@ -1167,7 +1167,7 @@ class Carbon extends DateTime implements JsonSerializable
     }
 
     /**
-     * Set a part of the Carbon object
+     * Set a partials of the Carbon object
      *
      * @param string                   $name
      * @param string|int|\DateTimeZone $value

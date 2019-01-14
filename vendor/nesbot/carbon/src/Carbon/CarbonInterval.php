@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of the Carbon package.
+ * This file is partials of the Carbon package.
  *
  * (c) Brian Nesbitt <brian@nesbot.com>
  *
@@ -477,7 +477,7 @@ class CarbonInterval extends DateInterval
 
                 default:
                     throw new InvalidArgumentException(
-                        sprintf('Invalid part %s in definition %s', $part, $intervalDefinition)
+                        sprintf('Invalid partials %s in definition %s', $part, $intervalDefinition)
                     );
             }
         }
@@ -607,7 +607,7 @@ class CarbonInterval extends DateInterval
     ///////////////////////////////////////////////////////////////////
 
     /**
-     * Get a part of the CarbonInterval object.
+     * Get a partials of the CarbonInterval object.
      *
      * @param string $name
      *
@@ -653,7 +653,7 @@ class CarbonInterval extends DateInterval
     }
 
     /**
-     * Set a part of the CarbonInterval object.
+     * Set a partials of the CarbonInterval object.
      *
      * @param string $name
      * @param int    $val

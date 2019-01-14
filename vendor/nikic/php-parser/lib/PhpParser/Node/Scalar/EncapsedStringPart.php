@@ -10,7 +10,7 @@ class EncapsedStringPart extends Scalar
     public $value;
 
     /**
-     * Constructs a node representing a string part of an encapsed string.
+     * Constructs a node representing a string partials of an encapsed string.
      *
      * @param string $value      String value
      * @param array  $attributes Additional attributes

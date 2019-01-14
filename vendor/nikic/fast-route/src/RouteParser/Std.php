@@ -41,7 +41,7 @@ REGEX;
         $routeDatas = [];
         foreach ($segments as $n => $segment) {
             if ($segment === '' && $n !== 0) {
-                throw new BadRouteException('Empty optional part');
+                throw new BadRouteException('Empty optional partials');
             }
 
             $currentRoute .= $segment;

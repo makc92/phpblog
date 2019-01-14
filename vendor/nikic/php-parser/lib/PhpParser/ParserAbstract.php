@@ -91,7 +91,7 @@ abstract class ParserAbstract implements Parser
     protected $ruleToLength;
 
     /*
-     * The following members are part of the parser state:
+     * The following members are partials of the parser state:
      */
 
     /** @var Lexer Lexer that is used when parsing */
@@ -811,7 +811,7 @@ abstract class ParserAbstract implements Parser
         } else {
             assert(count($contents) > 0);
             if (!$contents[0] instanceof Node\Scalar\EncapsedStringPart) {
-                // If there is no leading encapsed string part, pretend there is an empty one
+                // If there is no leading encapsed string partials, pretend there is an empty one
                 $this->stripIndentation(
                     '', $indentLen, $indentChar, true, false, $contents[0]->getAttributes()
                 );

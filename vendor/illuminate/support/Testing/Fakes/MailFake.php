@@ -263,7 +263,7 @@ class MailFake implements Mailer, MailQueue
     }
 
     /**
-     * Send a new message when only a raw text part.
+     * Send a new message when only a raw text partials.
      *
      * @param  string  $text
      * @param  \Closure|string  $callback

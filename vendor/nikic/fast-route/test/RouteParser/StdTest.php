@@ -135,15 +135,15 @@ class StdTest extends TestCase
             ],
             [
                 '/test[]',
-                'Empty optional part'
+                'Empty optional partials'
             ],
             [
                 '/test[[opt]]',
-                'Empty optional part'
+                'Empty optional partials'
             ],
             [
                 '[[test]]',
-                'Empty optional part'
+                'Empty optional partials'
             ],
             [
                 '/test[/opt]/required',

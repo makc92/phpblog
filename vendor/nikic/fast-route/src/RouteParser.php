@@ -10,15 +10,15 @@ interface RouteParser
      * The expected output is defined using an example:
      *
      * For the route string "/fixedRoutePart/{varName}[/moreFixed/{varName2:\d+}]", if {varName} is interpreted as
-     * a placeholder and [...] is interpreted as an optional route part, the expected result is:
+     * a placeholder and [...] is interpreted as an optional route partials, the expected result is:
      *
      * [
-     *     // first route: without optional part
+     *     // first route: without optional partials
      *     [
      *         "/fixedRoutePart/",
      *         ["varName", "[^/]+"],
      *     ],
-     *     // second route: with optional part
+     *     // second route: with optional partials
      *     [
      *         "/fixedRoutePart/",
      *         ["varName", "[^/]+"],

@@ -11,6 +11,10 @@ header {
 .post {
     margin-bottom: 20px;
 }
+.post img {
+    height: 300px;
+    width: 100%;
+}
 
 footer {
     background: #343a40;

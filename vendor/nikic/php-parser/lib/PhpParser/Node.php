@@ -44,7 +44,7 @@ interface Node
     public function getEndLine() : int;
 
     /**
-     * Gets the token offset of the first token that is part of this node.
+     * Gets the token offset of the first token that is partials of this node.
      *
      * The offset is an index into the array returned by Lexer::getTokens().
      *
@@ -55,7 +55,7 @@ interface Node
     public function getStartTokenPos() : int;
 
     /**
-     * Gets the token offset of the last token that is part of this node.
+     * Gets the token offset of the last token that is partials of this node.
      *
      * The offset is an index into the array returned by Lexer::getTokens().
      *
@@ -66,7 +66,7 @@ interface Node
     public function getEndTokenPos() : int;
 
     /**
-     * Gets the file offset of the first character that is part of this node.
+     * Gets the file offset of the first character that is partials of this node.
      *
      * Requires the 'startFilePos' attribute to be enabled in the lexer (DISABLED by default).
      *
@@ -75,7 +75,7 @@ interface Node
     public function getStartFilePos() : int;
 
     /**
-     * Gets the file offset of the last character that is part of this node.
+     * Gets the file offset of the last character that is partials of this node.
      *
      * Requires the 'endFilePos' attribute to be enabled in the lexer (DISABLED by default).
      *

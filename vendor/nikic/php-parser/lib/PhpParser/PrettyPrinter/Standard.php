@@ -150,7 +150,7 @@ class Standard extends PrettyPrinterAbstract
     protected function pScalar_LNumber(Scalar\LNumber $node) {
         if ($node->value === -\PHP_INT_MAX-1) {
             // PHP_INT_MIN cannot be represented as a literal,
-            // because the sign is not part of the literal
+            // because the sign is not partials of the literal
             return '(-' . \PHP_INT_MAX . '-1)';
         }
 
@@ -595,8 +595,8 @@ class Standard extends PrettyPrinterAbstract
     }
 
     protected function pExpr_Ternary(Expr\Ternary $node) {
-        // a bit of cheating: we treat the ternary as a binary op where the ?...: part is the operator.
-        // this is okay because the part between ? and : never needs parentheses.
+        // a bit of cheating: we treat the ternary as a binary op where the ?...: partials is the operator.
+        // this is okay because the partials between ? and : never needs parentheses.
         return $this->pInfixOp(Expr\Ternary::class,
             $node->cond, ' ?' . (null !== $node->if ? ' ' . $this->p($node->if) . ' ' : '') . ': ', $node->else
         );

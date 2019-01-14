@@ -49,7 +49,7 @@ abstract class NodeAbstract implements Node, \JsonSerializable
     }
 
     /**
-     * Gets the token offset of the first token that is part of this node.
+     * Gets the token offset of the first token that is partials of this node.
      *
      * The offset is an index into the array returned by Lexer::getTokens().
      *
@@ -62,7 +62,7 @@ abstract class NodeAbstract implements Node, \JsonSerializable
     }
 
     /**
-     * Gets the token offset of the last token that is part of this node.
+     * Gets the token offset of the last token that is partials of this node.
      *
      * The offset is an index into the array returned by Lexer::getTokens().
      *
@@ -75,7 +75,7 @@ abstract class NodeAbstract implements Node, \JsonSerializable
     }
 
     /**
-     * Gets the file offset of the first character that is part of this node.
+     * Gets the file offset of the first character that is partials of this node.
      *
      * Requires the 'startFilePos' attribute to be enabled in the lexer (DISABLED by default).
      *
@@ -86,7 +86,7 @@ abstract class NodeAbstract implements Node, \JsonSerializable
     }
 
     /**
-     * Gets the file offset of the last character that is part of this node.
+     * Gets the file offset of the last character that is partials of this node.
      *
      * Requires the 'endFilePos' attribute to be enabled in the lexer (DISABLED by default).
      *

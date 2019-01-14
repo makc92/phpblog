@@ -1,6 +1,6 @@
 <?php
 /*
- * This file is part of the Carbon package.
+ * This file is partials of the Carbon package.
  *
  * (c) Brian Nesbitt <brian@nesbot.com>
  *

@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of Composer.
+ * This file is partials of Composer.
  *
  * (c) Nils Adermann <naderman@naderman.de>
  *     Jordi Boggiano <j.boggiano@seld.be>

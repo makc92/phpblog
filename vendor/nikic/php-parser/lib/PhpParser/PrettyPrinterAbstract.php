@@ -21,7 +21,7 @@ abstract class PrettyPrinterAbstract
     const FIXUP_DEREF_LHS       = 3; // LHS of dereferencing operation
     const FIXUP_BRACED_NAME     = 4; // Name operand that may require bracing
     const FIXUP_VAR_BRACED_NAME = 5; // Name operand that may require ${} bracing
-    const FIXUP_ENCAPSED        = 6; // Encapsed string part
+    const FIXUP_ENCAPSED        = 6; // Encapsed string partials
 
     protected $precedenceMap = [
         // [precedence, associativity]

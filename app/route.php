@@ -29,6 +29,10 @@ $container = $ContainerBuilder->build();
 
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/', ['App\controllers\HomeController', 'index']);
+    $r->addRoute('GET', '/post/{id:\d+}', ['App\controllers\HomeController', 'post']);
+    $r->addRoute('GET', '/register', ['App\controllers\RegisterController', 'show_register_form']);
+    $r->addRoute('GET', '/login', ['App\controllers\RegisterController', 'show_login_form']);
+    $r->addRoute('GET', '/recovery_password', ['App\controllers\RegisterController', 'show_recovery_form']);
 });
 
 
