@@ -17,18 +17,18 @@ class RegisterController
 {
     private $db;
     private $engine;
-//    private $auth;
+    private $auth;
 
-    public function __construct(QueryBuilder $db, Engine $engine)
+    public function __construct(QueryBuilder $db, Engine $engine, Auth $auth)
     {
         $this->db = $db;
         $this->engine = $engine;
-//        $this->auth = $auth;
+        $this->auth = $auth;
     }
 
     public function show_register_form()
     {
-//        d($this->auth);
+        d($this->auth);
         echo $this->engine->render('auth/register');
     }
     public function show_login_form()
