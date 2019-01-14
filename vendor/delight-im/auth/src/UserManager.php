@@ -18,7 +18,7 @@ use Delight\Db\Throwable\IntegrityConstraintViolationException;
 require_once __DIR__ . '/Exceptions.php';
 
 /**
- * Abstract base class for components implementing user management
+ * Abstract base class for controllers implementing user management
  *
  * @internal
  */
@@ -418,7 +418,7 @@ abstract class UserManager {
 	 * The optional qualifier may be a database name or a schema name, for example
 	 *
 	 * @param string $name the name of the table
-	 * @return string[] the components of the (qualified) full name of the table
+	 * @return string[] the controllers of the (qualified) full name of the table
 	 */
 	protected function makeTableNameComponents($name) {
 		$components = [];

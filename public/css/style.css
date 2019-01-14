@@ -1,0 +1,26 @@
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+header {
+    background: #343a40;
+    margin-bottom: 30px;
+}
+
+.post {
+    margin-bottom: 20px;
+}
+
+footer {
+    background: #343a40;
+    padding: 20px 0;
+    text-align: center;
+    color: #fff;
+    margin-top: auto;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}

@@ -8,7 +8,7 @@ use PhpParser\ErrorHandler;
 /**
  * Error handler that handles all errors by throwing them.
  *
- * This is the default strategy used by all components.
+ * This is the default strategy used by all controllers.
  */
 class Throwing implements ErrorHandler
 {
