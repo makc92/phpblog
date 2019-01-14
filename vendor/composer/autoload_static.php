@@ -68,6 +68,7 @@ class ComposerStaticInit2623db6441a38370a0a00dba1cbfe86e
         'A' => 
         array (
             'Aura\\SqlQuery\\' => 14,
+            'App\\' => 4,
         ),
     );
 
@@ -171,6 +172,10 @@ class ComposerStaticInit2623db6441a38370a0a00dba1cbfe86e
         'Aura\\SqlQuery\\' => 
         array (
             0 => __DIR__ . '/..' . '/aura/sqlquery/src',
+        ),
+        'App\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app',
         ),
     );
 
