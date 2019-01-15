@@ -16,9 +16,9 @@ class Mailer
     {
         SimpleMail::make()
             ->setTo($email, 'Пользователь')
-            ->setFrom('makcblog@mail.ru', 'From Blog')
+            ->setFrom('blogmakc@mail.ru', 'From Blog')
             ->setSubject('Подтвердите email')
-            ->setMessage($text);
-        return $this->mailer->send();
+            ->setMessage($text)
+            ->send();
     }
 }
