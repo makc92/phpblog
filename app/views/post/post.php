@@ -20,4 +20,3 @@ d($postView)
         </div>
     </div>
 </div>
-<?php $this->insert('partials/sidebar') ?>
