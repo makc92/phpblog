@@ -43,8 +43,11 @@ class RegisterController
         try {
             $this->auth->register($_POST['email'], $_POST['password'], $_POST['name'], function ($selector, $token) {
                 flash()->success(['На вашу почту ' . $_POST['email'] . ' был отправлен код с подтверждением.']);
-                $mess ="http://phpblog/verify?selector" . $selector . "&toke=" . $token;
-                $this->mail->send($_POST['mail'], $mess);
+//                $mess = "http://phpblog/verify?selector=" . $selector . "&token=" . $token;
+                $mess =  "<a href=\"http://phpblog/verify?selector={$selector}&token={$token}\">подтвердить email</a>";
+//                $mess =  "<b>asdfsadfsdafsdafsdaf</b>";
+                $this->mail->send($_POST['email'], $mess);
+
             });
             redirect("/register");
             die;

@@ -19,6 +19,7 @@ class Mailer
             ->setFrom('blogmakc@mail.ru', 'From Blog')
             ->setSubject('Подтвердите email')
             ->setMessage($text)
+            ->setHtml()
             ->send();
     }
 }

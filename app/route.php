@@ -34,6 +34,7 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
     $r->addRoute('GET', '/login', ['App\controllers\RegisterController', 'show_login_form']);
     $r->addRoute('GET', '/recovery_password', ['App\controllers\RegisterController', 'show_recovery_form']);
     $r->addRoute('POST', '/register', ['App\controllers\RegisterController', 'register']);
+    $r->addRoute('GET', '/verify', ['App\controllers\VerifyController', 'verify_email']);
 });
 
 
@@ -62,7 +63,6 @@ switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::FOUND:
         $handler = $routeInfo[1];
         $vars = $routeInfo[2];
-
         $container->call($routeInfo[1], $routeInfo[2]);
         break;
 }
