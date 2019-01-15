@@ -183,12 +183,17 @@ class ComposerStaticInit2623db6441a38370a0a00dba1cbfe86e
         0 => __DIR__ . '/..' . '/nesbot/carbon/src',
     );
 
+    public static $classMap = array (
+        'SimpleMail' => __DIR__ . '/..' . '/eoghanobrien/php-simple-mail/class.simple_mail.php',
+    );
+
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit2623db6441a38370a0a00dba1cbfe86e::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit2623db6441a38370a0a00dba1cbfe86e::$prefixDirsPsr4;
             $loader->fallbackDirsPsr4 = ComposerStaticInit2623db6441a38370a0a00dba1cbfe86e::$fallbackDirsPsr4;
+            $loader->classMap = ComposerStaticInit2623db6441a38370a0a00dba1cbfe86e::$classMap;
 
         }, null, ClassLoader::class);
     }

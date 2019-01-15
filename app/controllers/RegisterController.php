@@ -7,11 +7,10 @@
  */
 
 namespace App\controllers;
+use App\classes\Mailer;
 use App\Classes\QueryBuilder;
 use League\Plates\Engine;
 use Delight\Auth\Auth;
-use PDO;
-
 
 class RegisterController
 {
@@ -19,16 +18,16 @@ class RegisterController
     private $engine;
     private $auth;
 
-    public function __construct(QueryBuilder $db, Engine $engine, Auth $auth)
+    public function __construct(QueryBuilder $db, Engine $engine, Auth $auth, Mailer $mailer)
     {
         $this->db = $db;
         $this->engine = $engine;
         $this->auth = $auth;
+        $this->mail = $mailer;
     }
 
     public function show_register_form()
     {
-        d($this->auth);
         echo $this->engine->render('auth/register');
     }
     public function show_login_form()
@@ -42,23 +41,28 @@ class RegisterController
     public function register()
     {
         try {
-            $userId = $this->auth->register($_POST['email'], $_POST['password'], $_POST['username'], function ($selector, $token) {
-                echo 'Send ' . $selector . ' and ' . $token . ' to the user (e.g. via email)';
+            $this->auth->register($_POST['email'], $_POST['password'], $_POST['name'], function ($selector, $token) {
+                flash()->success(['На вашу почту ' . $_POST['email'] . ' был отправлен код с подтверждением.']);
+                $mess = "http://phpblog/verify?selector" . $selector . "&toke=" . $token;
+                $this->mail->send( $_POST['email'], $mess);
             });
-
-            echo 'We have signed up a new user with the ID ' . $userId;
+            redirect("/register");
+            die;
+//            echo 'We have signed up a new user with the ID ' . $userId;
         }
         catch (\Delight\Auth\InvalidEmailException $e) {
-            die('Invalid email address');
+            flash()->error(['Некорректный адресс электронной почты']);
         }
         catch (\Delight\Auth\InvalidPasswordException $e) {
-            die('Invalid password');
+            flash()->error(['Некорректный пароль']);
         }
         catch (\Delight\Auth\UserAlreadyExistsException $e) {
-            die('User already exists');
+            flash()->error(['Пользователь уже существует']);
         }
         catch (\Delight\Auth\TooManyRequestsException $e) {
-            die('Too many requests');
+            flash()->error(['Большое количество попыток регистрации']);
         }
+        redirect("/register");
+        die;
     }
 }
