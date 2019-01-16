@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.7.3
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Янв 15 2019 г., 16:32
--- Версия сервера: 5.6.38
--- Версия PHP: 7.1.12
+-- Время создания: Янв 16 2019 г., 21:02
+-- Версия сервера: 5.6.37
+-- Версия PHP: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -89,8 +89,14 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `email`, `password`, `username`, `status`, `verified`, `resettable`, `roles_mask`, `registered`, `last_login`, `force_logout`) VALUES
 (30, 'asd@mail.ru', '$2y$10$PHYQ1c4AchaF42GWZ0AjNu7675SDhbTmvL6i8.1iG9iVNeRxaoqFK', 'asd', 0, 1, 1, 0, 1547557813, NULL, 0),
-(28, 'makc@mail.ru', '$2y$10$sEMN/fnd3zLnDmC0Zt/.Oea6d.ZUAeDN/BMQAp86Xxf2wTJO.sSWm', 'makc', 0, 1, 1, 0, 1547557778, NULL, 0),
-(29, 'qwe@mail.ru', '$2y$10$5CWXCVxxsJaquFYehf2QiOjvVJXmA2qzSljNOWyNUA91YiQ1jVVVm', 'qwe', 0, 1, 1, 0, 1547557796, NULL, 0);
+(28, 'makc@mail.ru', '$2y$10$sEMN/fnd3zLnDmC0Zt/.Oea6d.ZUAeDN/BMQAp86Xxf2wTJO.sSWm', 'makc', 0, 1, 1, 0, 1547557778, 1547656953, 0),
+(29, 'qwe@mail.ru', '$2y$10$5CWXCVxxsJaquFYehf2QiOjvVJXmA2qzSljNOWyNUA91YiQ1jVVVm', 'qwe', 0, 1, 1, 0, 1547557796, NULL, 0),
+(31, 'gsdfgsdf@vdsfsadgsdag.wer', '$2y$10$tBSEE4hk7a29kboXVGir3Oc4T.Ls3NsX/wMBhh3wKYsG8bTA2jAHu', 'gsdfg', 0, 0, 1, 0, 1547641421, NULL, 0),
+(32, 'hjklh@asdfsdaf.er', '$2y$10$hfMCbiImOkg/mzWwyICEmOTn.bStusCdjKGkWsj.tDzaOubpver9.', 'lhjkljk', 0, 0, 1, 0, 1547641496, NULL, 0),
+(33, 'ytiyui@fasdfasdf.ert', '$2y$10$TL5Q7ebz7Rq3YzJDHMmK4ufZbWYYuxD0BGb8n2G275oi9IbVXyQw6', 'ytiyui', 0, 0, 1, 0, 1547641682, NULL, 0),
+(34, 'proweb@proweb.uz', '$2y$10$rhvKvcWToX.3HdX9pJYCYOHAbERC1t16M2IBoZJzvqwHfd8XUp2h6', 'proweb', 0, 1, 1, 0, 1547642098, NULL, 0),
+(35, 'asdasd@asdasd.asdasd', '$2y$10$Jmpwpdzwsju.3fdzvYsutOqndwIQfoEcIkUhLjdM8/xtQ8OnfaCaa', 'asdasd', 0, 1, 1, 0, 1547642331, NULL, 0),
+(36, 'olga@mail.ru', '$2y$10$VX3ev8Vb9kgIOpByHBOR7O5Dx8iJjY9B0oRJmeMAIDmJWuKibMkkK', 'olga', 0, 1, 1, 0, 1547660576, 1547660617, 0);
 
 -- --------------------------------------------------------
 
@@ -133,7 +139,10 @@ INSERT INTO `users_confirmations` (`id`, `user_id`, `email`, `selector`, `token`
 (24, 24, 'sdfgdsfgdsfgdsfg@asdasd.asd', 'y81Ufc8FqoBoRlco', '$2y$10$PD0BJpGOxhpKB3YP7wjFFO.ER0ily0xyIle2Pti.ixxs9kYmq.aEm', 1547632448),
 (25, 25, 'hdfhd@afsdf.sdf', 'sG3T-HI_RuaHF2Xq', '$2y$10$avnwsae7uR7OCzmxUav/VOlbExtwkqv9x8RLDXJ0POcoWPehrwX/O', 1547632890),
 (26, 26, 'kjhkhghj@asd.asd', '9-a0xtY5mBOeZVVf', '$2y$10$cARUnptSGieq6pDPdLIlROzbDmuN/KIluozXqWiFEj/G2KisV3V6.', 1547632985),
-(27, 27, 'fasdfasdfasdf@adsdasd.ewr', 'k2KjumR7pmieNMto', '$2y$10$r4PXoSOSsXEYmYa.Ab0hPOQ4XJGOuztzHqOGmNb1YHvu/3cRyeqsq', 1547633058);
+(27, 27, 'fasdfasdfasdf@adsdasd.ewr', 'k2KjumR7pmieNMto', '$2y$10$r4PXoSOSsXEYmYa.Ab0hPOQ4XJGOuztzHqOGmNb1YHvu/3cRyeqsq', 1547633058),
+(31, 31, 'gsdfgsdf@vdsfsadgsdag.wer', 'C7JL_QDxSBMJ4oMl', '$2y$10$/ZwEWvKlErl.Y67E8nPwtu5c.nhTjpestnjwjKKVIcbOi43WRH7KC', 1547727821),
+(32, 32, 'hjklh@asdfsdaf.er', 'Yp0L0Nvdc245ZaSo', '$2y$10$sEEv9ecodZt3.SErTVJB1egc/hV5oUcmCC20sY3ZNJBunO/ZsAY/u', 1547727896),
+(33, 33, 'ytiyui@fasdfasdf.ert', 'MjTkP4V7ThljiiDT', '$2y$10$4R/XlmzRREYr8LNvxnC2pu.aIzHZHsIxPapa1RvYZ.ao7gE026gFm', 1547728082);
 
 -- --------------------------------------------------------
 
@@ -181,17 +190,15 @@ CREATE TABLE `users_throttling` (
 --
 
 INSERT INTO `users_throttling` (`bucket`, `tokens`, `replenished_at`, `expires_at`) VALUES
-('PZ3qJtO_NLbJfRIP-8b4ME4WA3xxc6n9nbCORSffyQ0', 2.00078, 1547557816, 1547989816),
-('QduM75nGblH2CDKFyk0QeukPOwuEVDAUFE54ITnHM38', 72.0097, 1547557813, 1548097813),
-('HIJQJPUQ2qyyTt0Q7_AuZA0pXm27czJnqpJsoA5IFec', 46.0278, 1547558829, 1547630829),
-('QG-7mhO6KMAQVd27hY19XX1a63Bor0g5I5PFXNbxqNI', 29, 1547558809, 1547630809),
-('py90jzaAqDRiDAr0XWq5MjGK_KelKoHOrEMJ_uKYlZE', 29, 1547558809, 1547630809),
-('4gxBREtskFv7o_SFffe5pLdRPlNHI77zMSIjB-lGPJU', 29, 1547558821, 1547630821),
-('dcskyzwyM3DXnSO8Rf6tWJDio42bE6PSoyLWrpd52zQ', 29, 1547558821, 1547630821),
-('ZBi7ZuER6U942tIQnE1nMToWAP8X3_Ai7GcgMbKNQOg', 29, 1547558826, 1547630826),
-('kIndTbNCmdqZu5JnLxHJS2eH0a44A3z6pyTtfRIA6mU', 29, 1547558826, 1547630826),
-('KONb0ODRyJg8nWziLW3ZngynFkFk-ctRVHSM6bM6fiM', 29, 1547558829, 1547630829),
-('rcEo_Pafe5FWvV3LeLKNCvOv364xs0EOO6V5iXO_YZI', 29, 1547558829, 1547630829);
+('shP728m6xle0gYOYJjDC9GQ4GBbkDkczazij6746fGY', 29, 1547660602, 1547732602),
+('7Ro51p4-KZqH41nmwSR-jBtPK9MaEqxY_yZi-7RYN58', 29, 1547660602, 1547732602),
+('-i2t7LvbG0P7lQzx3PuMogXNPDdVaYqStxaQO4aUw1U', 29, 1547642340, 1547714340),
+('Uu1u0sg4X-Rj1lX9FxuxI_D81ythrFkn5zlBGFk9KEI', 29, 1547642340, 1547714340),
+('_Pf6Oa1XiakzxKaUO4HWCnIWAHojAkB6-dXPxdnVhXE', 29, 1547642106, 1547714106),
+('Mc_xbsYuHzWWi0R4lMF16wBd3iDx6SXn0GJyZXodqQ0', 29, 1547642106, 1547714106),
+('HIJQJPUQ2qyyTt0Q7_AuZA0pXm27czJnqpJsoA5IFec', 49, 1547660602, 1547732602),
+('PZ3qJtO_NLbJfRIP-8b4ME4WA3xxc6n9nbCORSffyQ0', 2.42775, 1547660581, 1548092581),
+('QduM75nGblH2CDKFyk0QeukPOwuEVDAUFE54ITnHM38', 71.1443, 1547660617, 1548200617);
 
 --
 -- Индексы сохранённых таблиц
@@ -257,37 +264,31 @@ ALTER TABLE `users_throttling`
 --
 ALTER TABLE `category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT для таблицы `posts`
 --
 ALTER TABLE `posts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
-
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT для таблицы `users_confirmations`
 --
 ALTER TABLE `users_confirmations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
-
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 --
 -- AUTO_INCREMENT для таблицы `users_remembered`
 --
 ALTER TABLE `users_remembered`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT для таблицы `users_resets`
 --
 ALTER TABLE `users_resets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-COMMIT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

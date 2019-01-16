@@ -9,3 +9,4 @@
         <li class="list-group-item"><a href="./category.html">Cras justo odio</a></li>
     </ul>
 </div>
+<?php d($category) ?>

@@ -8,19 +8,17 @@
 
 namespace App\controllers;
 use App\classes\Mailer;
-use App\Classes\QueryBuilder;
 use League\Plates\Engine;
 use Delight\Auth\Auth;
 
 class RegisterController
 {
-    private $db;
     private $engine;
     private $auth;
+    private $mail;
 
-    public function __construct(QueryBuilder $db, Engine $engine, Auth $auth, Mailer $mailer)
+    public function __construct(Engine $engine, Auth $auth, Mailer $mailer)
     {
-        $this->db = $db;
         $this->engine = $engine;
         $this->auth = $auth;
         $this->mail = $mailer;
@@ -28,11 +26,8 @@ class RegisterController
 
     public function show_register_form()
     {
+//        d($this->auth->isLoggedIn());die;
         echo $this->engine->render('auth/register');
-    }
-    public function show_login_form()
-    {
-        echo $this->engine->render('auth/login');
     }
     public function show_recovery_form()
     {
@@ -45,6 +40,7 @@ class RegisterController
                 flash()->success(['На вашу почту ' . $_POST['email'] . ' был отправлен код с подтверждением.']);
 //                $mess = "http://phpblog/verify?selector=" . $selector . "&token=" . $token;
                 $mess =  "<a href=\"http://phpblog/verify?selector={$selector}&token={$token}\">подтвердить email</a>";
+
 //                $mess =  "<b>asdfsadfsdafsdafsdaf</b>";
                 $this->mail->send($_POST['email'], $mess);
 

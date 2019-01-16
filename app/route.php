@@ -27,14 +27,21 @@ $ContainerBuilder->addDefinitions(array(
 ));
 $container = $ContainerBuilder->build();
 
+
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/', ['App\controllers\HomeController', 'index']);
     $r->addRoute('GET', '/post/{id:\d+}', ['App\controllers\HomeController', 'post']);
     $r->addRoute('GET', '/register', ['App\controllers\RegisterController', 'show_register_form']);
-    $r->addRoute('GET', '/login', ['App\controllers\RegisterController', 'show_login_form']);
     $r->addRoute('GET', '/recovery_password', ['App\controllers\RegisterController', 'show_recovery_form']);
     $r->addRoute('POST', '/register', ['App\controllers\RegisterController', 'register']);
     $r->addRoute('GET', '/verify', ['App\controllers\VerifyController', 'verify_email']);
+    $r->addRoute('GET', '/login', ['App\controllers\LoginController', 'show_login_form']);
+    $r->addRoute('POST', '/login', ['App\controllers\LoginController', 'login']);
+    $r->addRoute('GET', '/logout', ['App\controllers\LoginController', 'logout']);
+    $r->addRoute('GET', '/profile', ['App\controllers\UserController', 'show_user_template']);
+    $r->addRoute('GET', '/user_post', ['App\controllers\UserController', 'show_user_post_template']);
+    $r->addRoute('GET', '/user_profile', ['App\controllers\UserController', 'show_user_profile_template']);
+    $r->addRoute('GET', '/user_password', ['App\controllers\UserController', 'show_user_password_template']);
 });
 
 
