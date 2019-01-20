@@ -1,6 +1,7 @@
 <?php
 
 namespace App\controllers;
+use App\classes\Mailer;
 use Delight\Auth\Auth;
 use App\Classes\QueryBuilder;
 use League\Plates\Engine;
@@ -10,30 +11,90 @@ class UserController
     private $engine;
     private $db;
     private $auth;
+    private $mail;
 
-    public function __construct(QueryBuilder $db, Engine $engine, Auth $auth)
+    public function __construct(QueryBuilder $db, Engine $engine, Auth $auth, Mailer $mailer)
     {
         $this->db = $db;
         $this->engine = $engine;
         $this->auth = $auth;
+        $this->mail = $mailer;
     }
 
-    public function show_user_template()
+    public function index()
     {
-        $user = $this->auth->getUsername();
-        echo $this->engine->render('user/user_page', ['username'=>$user]);
+        if($this->auth->isLoggedIn()) {
+            echo $this->engine->render('user/user_page');
+        }
+        else {
+            flash()->error('Залогиньтесь');
+            echo $this->engine->render('error');
+        }
     }
+    public function userinfo()
+    {
+        $user_info = $this->db->getOne('users', $this->auth->getUserId());
+        echo $this->engine->render('user/user_profile', ['user_info'=>$user_info]);
+    }
+    public function update_userinfo($id)
+    {
+        try {
+            if ($this->auth->reconfirmPassword($_POST['password'])) {
+                $this->db->update('users',['username'=>$_POST['name']], $id);
+                $this->auth->changeEmail($_POST['email'], function ($selector, $token) {
+                    flash()->success(['На вашу почту ' . $_POST['email'] . ' был отправлен код с подтверждением. Изменение вступит в силу, как только новый адрес электронной почты будет подтвержден']);
+                    $mess = "<a href=\"http://phpblog/changemail?selector={$selector}&token={$token}\">подтвердите смену email</a>";
+                    $this->mail->send($_POST['email'], $mess);
+                });
+                redirect("/profile");
+            }
+            else {
+                flash()->error(['Вы ввели неправильный пароль']);
+                redirect("/user_profile");
+            }
+        }
+        catch (\Delight\Auth\InvalidEmailException $e) {
+            flash()->error(['Неверный email']);
+        }
+        catch (\Delight\Auth\UserAlreadyExistsException $e) {
+            flash()->error(['Email уже существует']);
+        }
+        catch (\Delight\Auth\EmailNotVerifiedException $e) {
+            flash()->error(['Email не подтверджен']);
+        }
+        catch (\Delight\Auth\NotLoggedInException $e) {
+            flash()->error(['Вы не вошли в систему']);
+        }
+        catch (\Delight\Auth\TooManyRequestsException $e) {
+            flash()->error(['Большое количество попыток']);
+        }
+        redirect("/user_profile");
 
-    public function show_user_post_template()
-    {
-        echo $this->engine->render('user/user_post');
     }
-    public function show_user_profile_template()
-    {
-        echo $this->engine->render('user/user_profile');
-    }
-    public function show_user_password_template()
+    public function user_password()
     {
         echo $this->engine->render('user/user_password');
     }
+
+    public function change_password()
+    {
+        try {
+            $this->auth->changePassword($_POST['pass'], $_POST['new_pass']);
+            flash()->success(['Пароль изменен']);
+            redirect("/profile");
+        }
+        catch (\Delight\Auth\NotLoggedInException $e) {
+            flash()->error(['Вы не вошли в систему']);
+        }
+        catch (\Delight\Auth\InvalidPasswordException $e) {
+            flash()->error(['Неверный пароль']);
+        }
+        catch (\Delight\Auth\TooManyRequestsException $e) {
+            flash()->error(['Большое количество попыток']);
+        }
+        redirect("/profile/password");
+    }
+
+
+
 }

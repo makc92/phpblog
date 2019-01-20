@@ -1,30 +1,20 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Макс
- * Date: 16.01.2019
- * Time: 17:36
- */
-
 namespace App\controllers;
-use App\Classes\QueryBuilder;
 use League\Plates\Engine;
 use Delight\Auth\Auth;
 
 class LoginController
 {
-    private $db;
     private $engine;
     private $auth;
 
-    public function __construct(QueryBuilder $db, Engine $engine, Auth $auth)
+    public function __construct(Engine $engine, Auth $auth)
     {
-        $this->db = $db;
         $this->engine = $engine;
         $this->auth = $auth;
     }
 
-    public function show_login_form()
+    public function index()
     {
         echo $this->engine->render('auth/login');
     }
@@ -35,21 +25,22 @@ class LoginController
             $this->auth->login($_POST['email'], $_POST['password']);
 
             flash()->success('Вы успешно вошли');
-            redirect("/login");
+            redirect("/profile");
             die;
         }
         catch (\Delight\Auth\InvalidEmailException $e) {
-            die('Wrong email address');
+            flash()->error(['Неверный email']);
         }
         catch (\Delight\Auth\InvalidPasswordException $e) {
-            die('Wrong password');
+            flash()->error(['Неверный пароль']);
         }
         catch (\Delight\Auth\EmailNotVerifiedException $e) {
-            die('Email not verified');
+            flash()->error(['Email не подтвержден']);
         }
         catch (\Delight\Auth\TooManyRequestsException $e) {
-            die('Too many requests');
+            flash()->error(['Большое количество попыток']);
         }
+        redirect("/login");
     }
 
     public function logout()

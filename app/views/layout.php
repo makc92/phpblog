@@ -3,7 +3,6 @@
     <div class="container">
         <div class="row">
             <?=$this->section('content')?>
-
             <?php $this->insert('partials/sidebar') ?>
         </div>
         <nav aria-label="Page navigation example">

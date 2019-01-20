@@ -1,4 +1,5 @@
-<?php $this->insert('partials/header') ?>
+<?php $this->insert('partials/header'); ?>
+
     <main>
         <div class="container">
             <div class="row justify-content-center">

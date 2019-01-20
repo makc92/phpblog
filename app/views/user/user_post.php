@@ -1,51 +1,22 @@
 <?php $this->layout('auth/layout'); ?>
 <div class="col-lg-9">
+    <h2 class="mb-4">Мои записи</h2>
+    <?=flash(); ?>
     <div class="row">
-        <div class="col-12">
-            <h2>Мои записи</h2>
-            <div class="post mb-4">
-                <div class="post-image mr-3 ">
-                    <a href="#">
-                        <img src="./img/post-bg.jpg" alt="">
-                    </a>
-                </div>
-                <div class="post-content">
-                    <h4><a href="#">Post-title</a></h4>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio nulla nesciunt dolorum error, ducimus iure, pariatur recusandae quia, nihil labore mollitia? Animi perferendis, illo adipisci quo exercitationem sequi unde suscipit!</p>
-                    <a href="/edit.html" class="btn btn-warning">Редактировать запись</a>
-                    <a href="/delele" class="btn btn-danger">Удалить запись</a>
-                </div>
-            </div>
-        </div>
+        <?php foreach($user_posts as $post ): ?>
         <div class="col-12">
             <div class="post mb-4">
                 <div class="post-image mr-3 ">
-                    <a href="#">
-                        <img src="./img/post-bg.jpg" alt="">
-                    </a>
+                    <img src="../img/post-bg.jpg" alt="">
                 </div>
                 <div class="post-content">
-                    <h4><a href="#">Post-title</a></h4>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio nulla nesciunt dolorum error, ducimus iure, pariatur recusandae quia, nihil labore mollitia? Animi perferendis, illo adipisci quo exercitationem sequi unde suscipit!</p>
-                    <a href="/edit.html" class="btn btn-warning">Редактировать запись</a>
-                    <a href="/delele" class="btn btn-danger">Удалить запись</a>
+                    <h4><a href="/post/<?=$post['id']?>"><?=$post['title']; ?></a></h4>
+                    <p><?=$post['content']; ?></p>
+                    <a href="/user_post/edit/<?=$post['id'] ?>" class="btn btn-warning">Редактировать запись</a>
+                    <a href="/user_post/delete/<?=$post['id'] ?>" onclick="return confirm('Вы уверены?')" class="btn btn-danger">Удалить запись</a>
                 </div>
             </div>
         </div>
-        <div class="col-12">
-            <div class="post mb-4">
-                <div class="post-image mr-3 ">
-                    <a href="#">
-                        <img src="./img/post-bg.jpg" alt="">
-                    </a>
-                </div>
-                <div class="post-content">
-                    <h4><a href="#">Post-title</a></h4>
-                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Distinctio nulla nesciunt dolorum error, ducimus iure, pariatur recusandae quia, nihil labore mollitia? Animi perferendis, illo adipisci quo exercitationem sequi unde suscipit!</p>
-                    <a href="/edit.html" class="btn btn-warning">Редактировать запись</a>
-                    <a href="/delele" class="btn btn-danger">Удалить запись</a>
-                </div>
-            </div>
-        </div>
+        <?php endforeach; ?>
     </div>
 </div>

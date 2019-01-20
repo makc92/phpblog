@@ -103,4 +103,17 @@ class QueryBuilder
         $result = $sth->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
+    public function getAllbyID($table,$col , $id){
+        $select = $this->queryFactory->newSelect();
+        $select->cols(['*'])
+            ->from($table)
+            ->where("$col = :id")
+            ->bindValue('id', $id);
+        $sth = $this->pdo->prepare($select->getStatement());
+
+        $sth->execute($select->getBindValues());
+
+        $result = $sth->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
 }

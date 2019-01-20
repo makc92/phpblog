@@ -24,7 +24,7 @@ class RegisterController
         $this->mail = $mailer;
     }
 
-    public function show_register_form()
+    public function index()
     {
 //        d($this->auth->isLoggedIn());die;
         echo $this->engine->render('auth/register');

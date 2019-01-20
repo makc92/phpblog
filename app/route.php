@@ -31,17 +31,31 @@ $container = $ContainerBuilder->build();
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/', ['App\controllers\HomeController', 'index']);
     $r->addRoute('GET', '/post/{id:\d+}', ['App\controllers\HomeController', 'post']);
-    $r->addRoute('GET', '/register', ['App\controllers\RegisterController', 'show_register_form']);
+    $r->addRoute('GET', '/category/{id:\d+}', ['App\controllers\HomeController', 'get_posts_by_category']);
+
+    $r->addRoute('GET', '/register', ['App\controllers\RegisterController', 'index']);
     $r->addRoute('GET', '/recovery_password', ['App\controllers\RegisterController', 'show_recovery_form']);
     $r->addRoute('POST', '/register', ['App\controllers\RegisterController', 'register']);
+
     $r->addRoute('GET', '/verify', ['App\controllers\VerifyController', 'verify_email']);
-    $r->addRoute('GET', '/login', ['App\controllers\LoginController', 'show_login_form']);
+    $r->addRoute('GET', '/changemail', ['App\controllers\VerifyController', 'change_email']);
+
+    $r->addRoute('GET', '/login', ['App\controllers\LoginController', 'index']);
     $r->addRoute('POST', '/login', ['App\controllers\LoginController', 'login']);
     $r->addRoute('GET', '/logout', ['App\controllers\LoginController', 'logout']);
-    $r->addRoute('GET', '/profile', ['App\controllers\UserController', 'show_user_template']);
-    $r->addRoute('GET', '/user_post', ['App\controllers\UserController', 'show_user_post_template']);
-    $r->addRoute('GET', '/user_profile', ['App\controllers\UserController', 'show_user_profile_template']);
-    $r->addRoute('GET', '/user_password', ['App\controllers\UserController', 'show_user_password_template']);
+
+    $r->addRoute('GET', '/profile', ['App\controllers\UserController', 'index']);
+    $r->addRoute('GET', '/profile/change', ['App\controllers\UserController', 'userinfo']);
+    $r->addRoute('POST', '/profile/update/{id:\d+}', ['App\controllers\UserController', 'update_userinfo']);
+    $r->addRoute('GET', '/profile/password', ['App\controllers\UserController', 'user_password']);
+    $r->addRoute('POST', '/change_password', ['App\controllers\UserController', 'change_password']);
+
+    $r->addRoute('GET', '/user_post', ['App\controllers\PostController', 'index']);
+    $r->addRoute('GET', '/user_post/add', ['App\controllers\PostController', 'create_post']);
+    $r->addRoute('POST', '/add_post', ['App\controllers\PostController', 'add_post']);
+    $r->addRoute('GET', '/user_post/edit/{id:\d+}', ['App\controllers\PostController', 'edit_post']);
+    $r->addRoute('POST', '/user_post/update/{id:\d+}', ['App\controllers\PostController', 'update_post']);
+    $r->addRoute('GET', '/user_post/delete/{id:\d+}', ['App\controllers\PostController', 'delete_post']);
 });
 
 
