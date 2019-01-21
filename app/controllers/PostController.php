@@ -20,7 +20,7 @@ class PostController
     }
     public function index()
     {
-        $posts = $this->db->getAllbyID('posts','id_user', $this->auth->getUserId());
+        $posts = $this->db->getAllbyID('posts','id_user','date' ,$this->auth->getUserId());
         echo $this->engine->render('user/user_post', ['user_posts'=>$posts]);
     }
     public function create_post()
