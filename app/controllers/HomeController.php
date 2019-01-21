@@ -22,7 +22,7 @@ class HomeController
 
     public function index()
     {
-        $posts = $this->db->getAll('posts');
+        $posts = $this->db->getAll('posts', 'date');
         $auth = $this->auth->isLoggedIn();
         echo $this->engine->render('homepage', ['postsView' => $posts, 'title'=>'Блог', 'auth'=>$auth]);
     }
@@ -32,10 +32,10 @@ class HomeController
         $category_name = $this->db->getOne('category','id_category' ,$post['id_category']);
         echo $this->engine->render('post/post', ['postView' => $post, 'category_name'=>$category_name]);
     }
-    public function get_posts_by_category($id){
-        $category = $this->db->getAllbyID('posts','id_category',$id);
-        $category_name = $this->db->getOne('category', $id);
-        echo $this->engine->render('category', ['categoryView' => $category, 'category_name'=>$category_name]);
+    public function get_posts_by_category($name){
+        $categoryId = $this->db->getByName('category', 'id', 'name', $name);
+        $category = $this->db->getAllbyID('posts','id_category','date',$categoryId['id']);
+        echo $this->engine->render('category', ['categoryView' => $category, 'category_name'=>$name]);
     }
 
 }

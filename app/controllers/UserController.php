@@ -50,7 +50,7 @@ class UserController
             }
             else {
                 flash()->error(['Вы ввели неправильный пароль']);
-                redirect("/user_profile");
+                redirect("/profile/userinfo");
             }
         }
         catch (\Delight\Auth\InvalidEmailException $e) {
@@ -68,7 +68,7 @@ class UserController
         catch (\Delight\Auth\TooManyRequestsException $e) {
             flash()->error(['Большое количество попыток']);
         }
-        redirect("/user_profile");
+        redirect("/profile/userinfo");
 
     }
     public function user_password()

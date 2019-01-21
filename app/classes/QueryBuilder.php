@@ -13,9 +13,10 @@ class QueryBuilder
         $this->pdo = $pdo;
         $this->queryFactory = $queryFactory;
     }
-    public function getAll($table){
+    public function getAll($table, $order= 'id'){
         $select = $this->queryFactory->newSelect();
         $select->cols(['*'])
+            ->orderBy(["$order DESC"])
             ->from($table);
         $sth = $this->pdo->prepare($select->getStatement());
 
@@ -103,17 +104,31 @@ class QueryBuilder
         $result = $sth->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
-    public function getAllbyID($table,$col , $id){
+    public function getAllbyID($table,$col,$order='id',$id){
         $select = $this->queryFactory->newSelect();
         $select->cols(['*'])
             ->from($table)
             ->where("$col = :id")
-            ->bindValue('id', $id);
+            ->bindValue('id', $id)
+            ->orderBy(["$order DESC"]);
         $sth = $this->pdo->prepare($select->getStatement());
 
         $sth->execute($select->getBindValues());
 
         $result = $sth->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+    public function getByName($table,$col ,$row, $name){
+        $select = $this->queryFactory->newSelect();
+        $select->cols([$col])
+            ->from($table)
+            ->where("$row = :name")
+            ->bindValue('name', $name);
+        $sth = $this->pdo->prepare($select->getStatement());
+
+        $sth->execute($select->getBindValues());
+
+        $result = $sth->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
 }

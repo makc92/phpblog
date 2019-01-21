@@ -3,19 +3,16 @@
 namespace App\controllers;
 
 use Delight\Auth\Auth;
-use League\Plates\Engine;
 use App\Classes\QueryBuilder;
 
 class VerifyController
 {
     private $auth;
-    private $engine;
     private $db;
 
-    public function __construct(Auth $auth, Engine $engine, QueryBuilder $db)
+    public function __construct(Auth $auth, QueryBuilder $db)
     {
         $this->auth = $auth;
-        $this->engine = $engine;
         $this->db = $db;
     }
 

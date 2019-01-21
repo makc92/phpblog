@@ -2,6 +2,7 @@
 <div class="col-lg-9">
     <h2 class="mb-4">Мои записи</h2>
     <?=flash(); ?>
+    <a href="/profile/user_post/add" class="btn btn-success mb-4">Добавить запись</a>
     <div class="row">
         <?php foreach($user_posts as $post ): ?>
         <div class="col-12">

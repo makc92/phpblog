@@ -39,7 +39,7 @@ class PostController
         ];
         $this->db->insert($data,'posts');
         flash()->success('Запись успешно добавлена');
-        redirect("/user_post");
+        redirect("/profile/user_post");
 
     }
 
@@ -57,13 +57,13 @@ class PostController
         ];
         $this->db->update('posts', $data, $id);
         flash()->success('Запись успешно обновлена');
-        redirect("/user_post");
+        redirect("/profile/user_post");
 
     }
     public function delete_post($id)
     {
         $this->db->delete('posts', $id);
         flash()->success('Запись успешно удалена');
-        redirect("/user_post");
+        redirect("/profile/user_post");
     }
 }
