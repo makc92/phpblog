@@ -28,3 +28,7 @@ body {
     flex-direction: column;
     height: 100vh;
 }
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+}

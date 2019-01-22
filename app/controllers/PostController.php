@@ -5,23 +5,32 @@ namespace App\controllers;
 use Delight\Auth\Auth;
 use App\Classes\QueryBuilder;
 use League\Plates\Engine;
+use JasonGrimes\Paginator;
+use Intervention\Image\ImageManagerStatic;
 
 class PostController
 {
     private $engine;
     private $db;
     private $auth;
+    private $image;
 
-    public function __construct(QueryBuilder $db, Engine $engine, Auth $auth)
+    public function __construct(QueryBuilder $db, Engine $engine, Auth $auth, Image $image)
     {
         $this->db = $db;
         $this->engine = $engine;
         $this->auth = $auth;
+        $this->image = $image;
     }
     public function index()
     {
-        $posts = $this->db->getAllbyID('posts','id_user','date' ,$this->auth->getUserId());
-        echo $this->engine->render('user/user_post', ['user_posts'=>$posts]);
+        $currentPage = $_GET['page'] ?? 1;
+        $itemsPerPage = 3;
+        $urlPattern = "/profile/user_post?page=(:num)";
+        $totalItems = $this->db->getAllbyID('posts','id_user','id',$this->auth->getUserId());
+        $posts = $this->db->getAllPaginateById('posts','date', 'id_user', $this->auth->getUserId(), $itemsPerPage, $currentPage);
+        $paginator = new Paginator(count($totalItems), $itemsPerPage, $currentPage, $urlPattern);
+        echo $this->engine->render('user/user_post', ['user_posts'=>$posts, 'paginator'=>$paginator]);
     }
     public function create_post()
     {
@@ -30,7 +39,8 @@ class PostController
 
     public function add_post()
     {
-
+        $this->image->uploadImage($_FILES['image']);
+        d($_FILES);die;
         $data = [
             'title'=>$_POST['title'],
             'content'=>$_POST['content'],

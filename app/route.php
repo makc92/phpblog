@@ -31,11 +31,14 @@ $container = $ContainerBuilder->build();
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/', ['App\controllers\HomeController', 'index']);
     $r->addRoute('GET', '/post/{id:\d+}', ['App\controllers\HomeController', 'post']);
-    $r->addRoute('GET', '/category/{name}', ['App\controllers\HomeController', 'get_posts_by_category']);
+    $r->addRoute('GET', '/category/{name}', ['App\controllers\HomeController', 'getСategory']);
 
     $r->addRoute('GET', '/register', ['App\controllers\RegisterController', 'index']);
-    $r->addRoute('GET', '/recovery_password', ['App\controllers\RegisterController', 'show_recovery_form']);
     $r->addRoute('POST', '/register', ['App\controllers\RegisterController', 'register']);
+    $r->addRoute('GET', '/forgot_password', ['App\controllers\RegisterController', 'show_recovery_form']);
+    $r->addRoute('POST', '/recovery_password', ['App\controllers\RegisterController', 'recovery_password']);
+    $r->addRoute('GET', '/recovery', ['App\controllers\RegisterController', 'vefify_recovery']);
+    $r->addRoute('POST', '/new_password', ['App\controllers\RegisterController', 'new_password']);
 
     $r->addRoute('GET', '/verify', ['App\controllers\VerifyController', 'verify_email']);
     $r->addRoute('GET', '/changemail', ['App\controllers\VerifyController', 'change_email']);

@@ -29,25 +29,17 @@ class RegisterController
 //        d($this->auth->isLoggedIn());die;
         echo $this->engine->render('auth/register');
     }
-    public function show_recovery_form()
-    {
-        echo $this->engine->render('auth/recovery');
-    }
     public function register()
     {
         try {
             $this->auth->register($_POST['email'], $_POST['password'], $_POST['name'], function ($selector, $token) {
                 flash()->success(['На вашу почту ' . $_POST['email'] . ' был отправлен код с подтверждением.']);
-//                $mess = "http://phpblog/verify?selector=" . $selector . "&token=" . $token;
                 $mess =  "<a href=\"http://phpblog/verify?selector={$selector}&token={$token}\">подтвердить email</a>";
-
-//                $mess =  "<b>asdfsadfsdafsdafsdaf</b>";
                 $this->mail->send($_POST['email'], $mess);
 
             });
             redirect("/register");
             die;
-//            echo 'We have signed up a new user with the ID ' . $userId;
         }
         catch (\Delight\Auth\InvalidEmailException $e) {
             flash()->error(['Некорректный адресс электронной почты']);
@@ -62,6 +54,68 @@ class RegisterController
             flash()->error(['Большое количество попыток регистрации']);
         }
         redirect("/register");
+        die;
+    }
+    public function show_recovery_form()
+    {
+        echo $this->engine->render('auth/recovery');
+    }
+    public function recovery_password()
+    {
+        try {
+            $this->auth->forgotPassword($_POST['email'], function ($selector, $token) {
+                flash()->success(['На вашу почту ' . $_POST['email'] . ' был отправлен запрос по смене пароля']);
+                $mess =  "<a href=\"http://phpblog/recovery?selector={$selector}&token={$token}\">Подтвердите смену пароля</a>";
+                $this->mail->send($_POST['email'], $mess);
+            });
+
+            redirect("/forgot_password");
+            die;
+        }
+        catch (\Delight\Auth\InvalidEmailException $e) {
+            flash()->error(['неверный email']);
+        }
+        catch (\Delight\Auth\EmailNotVerifiedException $e) {
+            flash()->error(['email не подтвержден']);
+        }
+        catch (\Delight\Auth\ResetDisabledException $e) {
+            flash()->error(['смена пароля отключена']);
+        }
+        catch (\Delight\Auth\TooManyRequestsException $e) {
+            flash()->error(['много попыток']);
+        }
+        redirect("/forgot_password");
+        die;
+    }
+
+    public function vefify_recovery(){
+        if ($this->auth->canResetPassword($_GET['selector'], $_GET['token'])) {
+            echo $this->engine->render('auth/newPassword', ['selector'=>$_GET['selector'], 'token'=>$_GET['token']]);
+        }
+    }
+    public function new_password(){
+        try {
+            $this->auth->resetPassword($_POST['selector'], $_POST['token'], $_POST['password']);
+            flash()->success(['Пароль успешно изменен']);
+            redirect("/login");
+            die;
+        }
+        catch (\Delight\Auth\InvalidSelectorTokenPairException $e) {
+            flash()->error(['неверный токен']);
+        }
+        catch (\Delight\Auth\TokenExpiredException $e) {
+            flash()->error(['токен истек']);
+        }
+        catch (\Delight\Auth\ResetDisabledException $e) {
+            flash()->error(['смена пароля отключена']);
+        }
+        catch (\Delight\Auth\InvalidPasswordException $e) {
+            flash()->error(['неверный пароль']);
+        }
+        catch (\Delight\Auth\TooManyRequestsException $e) {
+            flash()->error(['много попыток']);
+        }
+        redirect("/recovery");
         die;
     }
 }

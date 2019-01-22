@@ -23,4 +23,5 @@
         <?php endforeach; ?>
         
     </div>
+    <?php require "../app/views/partials/pagination.php"?>
 </div>

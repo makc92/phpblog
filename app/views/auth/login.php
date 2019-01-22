@@ -12,5 +12,5 @@
         <button type="submit" class="btn btn-primary">Войти</button>
         <a href="/" class="btn btn-info">Отмена</a>
     </form>
-    <p class="my-3">Забыли пароль? <b><a href="/recovery_password">Восстановить пароль</a></b></p>
+    <p class="my-3">Забыли пароль? <b><a href="/forgot_password">Восстановить пароль</a></b></p>
 </div>

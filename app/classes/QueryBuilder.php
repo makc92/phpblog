@@ -25,19 +25,6 @@ class QueryBuilder
         $result = $sth->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
-    public function getAllPaginate($table){
-        $select = $this->queryFactory->newSelect();
-        $select->cols(['*'])
-            ->from($table)
-            ->setPaging(3)
-            ->page($_GET['page'] ?? 1);
-        $sth = $this->pdo->prepare($select->getStatement());
-
-        $sth->execute($select->getBindValues());
-
-        $result = $sth->fetchAll(PDO::FETCH_ASSOC);
-        return $result;
-    }
     public function insert($data, $table){
         $insert = $this->queryFactory->newInsert();
         $insert
@@ -129,6 +116,34 @@ class QueryBuilder
         $sth->execute($select->getBindValues());
 
         $result = $sth->fetch(PDO::FETCH_ASSOC);
+        return $result;
+    }
+    public function getAllPaginateById($table,$order= 'id',$col, $id, $paging = 1, $page = 1){
+        $select = $this->queryFactory->newSelect();
+        $select->cols(['*'])
+            ->orderBy(["$order DESC"])
+            ->from($table)
+            ->setPaging($paging)
+            ->page($page)
+            ->where("$col = :id")
+            ->bindValue('id', $id);
+        $sth = $this->pdo->prepare($select->getStatement());
+        $sth->execute($select->getBindValues());
+        $result = $sth->fetchAll(PDO::FETCH_ASSOC);
+        return $result;
+    }
+    public function getAllPaginate($table, $paging = 1, $page = 1, $order= 'id'){
+        $select = $this->queryFactory->newSelect();
+        $select->cols(['*'])
+            ->orderBy(["$order DESC"])
+            ->from($table)
+            ->setPaging($paging)
+            ->page($page);
+        $sth = $this->pdo->prepare($select->getStatement());
+
+        $sth->execute($select->getBindValues());
+
+        $result = $sth->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
 }

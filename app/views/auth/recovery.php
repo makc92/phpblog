@@ -1,7 +1,8 @@
 <?php $this->layout('auth/layout'); ?>
 <div class="col-5">
+    <?=flash() ?>
     <h2 class="my-4">Восстановить Пароль</h2>
-    <form action="" method="post">
+    <form action="/recovery_password" method="post">
         <div class="form-group">
             <input type="email" class="form-control" placeholder="Email" name="email">
         </div>
