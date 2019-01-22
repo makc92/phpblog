@@ -2,10 +2,12 @@
 
 
 namespace App\controllers;
+use App\classes\Image;
 use App\Classes\QueryBuilder;
 use JasonGrimes\Paginator;
 use League\Plates\Engine;
 use Delight\Auth\Auth;
+use Intervention\Image\ImageManager;
 
 
 class HomeController
@@ -19,6 +21,7 @@ class HomeController
         $this->db = $db;
         $this->engine = $engine;
         $this->auth = $auth;
+
     }
 
     public function index()

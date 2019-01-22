@@ -7,10 +7,16 @@
  */
 
 namespace App\classes;
-use Intervention\Image\ImageManagerStatic;
+use Intervention\Image\ImageManager;
 
 class Image
 {
+    private $imageManager;
+    public function  __construct(ImageManager $imageManager)
+    {
+        $this->imageManager = $imageManager;
+    }
+
     public function uploadImage($image){
         $extension = pathinfo($image['name'], PATHINFO_EXTENSION);
         $filename = uniqid() . "." . $extension;

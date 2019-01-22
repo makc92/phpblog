@@ -6,7 +6,8 @@ use Delight\Auth\Auth;
 use App\Classes\QueryBuilder;
 use League\Plates\Engine;
 use JasonGrimes\Paginator;
-use Intervention\Image\ImageManagerStatic;
+use Intervention\Image\ImageManager;
+use App\classes\Image;
 
 class PostController
 {
@@ -15,7 +16,7 @@ class PostController
     private $auth;
     private $image;
 
-    public function __construct(QueryBuilder $db, Engine $engine, Auth $auth, Image $image)
+    public function __construct(QueryBuilder $db, Engine $engine, Auth $auth,Image $image)
     {
         $this->db = $db;
         $this->engine = $engine;
