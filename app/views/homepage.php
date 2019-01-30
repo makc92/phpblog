@@ -5,11 +5,12 @@
     <div class="row">
         <?php foreach ($postsView as $post): ?>
         <?php $category = getCategory($post['id_category']); ?>
+        <?php d($post) ?>
         <div class="col-12">
             <div class="post mb-4">
                 <div class="post-image mr-3 ">
                     <a href="/post/<?=$post['id']?>">
-                        <img src="./img/post-bg.jpg" alt="">
+                        <img src="<?=getImage($post['image']) ?>" alt="">
                     </a>
                 </div>
                 <div class="post-content">

@@ -2,6 +2,7 @@
 use Aura\SqlQuery\QueryFactory;
 use Delight\Auth\Auth;
 use DI\ContainerBuilder;
+use Intervention\Image\ImageManager;
 use League\Plates\Engine;
 
 $ContainerBuilder = new ContainerBuilder();
@@ -23,6 +24,9 @@ $ContainerBuilder->addDefinitions(array(
     },
     QueryFactory::class => function(){
         return new QueryFactory('mysql');
+    },
+    ImageManager::class=>function(){
+        return new ImageManager(array('driver' => 'imagick'));
     }
 ));
 $container = $ContainerBuilder->build();

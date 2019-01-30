@@ -38,3 +38,6 @@ function countCategory($id){ //для того чтобы опрокинуть �
     $qb = new QueryBuilder($pdo,$query);
     return count($qb->getAllbyID('posts', 'id_category', 'id', $id ));
 }
+function getImage($image){
+    return '/img/' . $image;
+}

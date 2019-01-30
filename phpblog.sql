@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Янв 20 2019 г., 21:58
+-- Время создания: Янв 30 2019 г., 21:46
 -- Версия сервера: 5.6.37
 -- Версия PHP: 7.1.7
 
@@ -51,6 +51,7 @@ CREATE TABLE `posts` (
   `id` int(11) NOT NULL,
   `title` varchar(255) NOT NULL,
   `content` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
   `id_category` int(11) NOT NULL,
   `id_user` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -60,17 +61,11 @@ CREATE TABLE `posts` (
 -- Дамп данных таблицы `posts`
 --
 
-INSERT INTO `posts` (`id`, `title`, `content`, `id_category`, `id_user`, `date`) VALUES
-(6, 'qweqweqweqweqweqwe', 'sadfsad fasf asd fasd f asdfasd fasd fasdfasd fasdf asdfasdf ', 1, 29, '2019-01-20 10:59:39'),
-(7, 'dasddcxzxc', 'sadfsad fasf asd fasd f asdfasd fasd fasdfasd fasdf asdfasdf ', 1, 30, '2019-01-20 10:59:42'),
-(8, 'Proweb', 'Proweb Proweb Proweb Proweb Proweb Proweb Proweb Proweb Proweb Proweb Proweb Proweb Proweb Proweb Proweb Proweb Proweb Proweb Proweb Proweb Proweb Proweb Proweb Proweb Proweb Proweb ', 2, 28, '2019-01-20 18:47:29'),
-(9, 'ASD ASD ASD', 'sadfgasdfasdff', 2, 30, '2019-01-20 11:21:30'),
-(11, 'CHELSEA', 'fgaskjdgfjksdagkfgasdkfghsadgfsdafsdaf', 2, 30, '2019-01-20 12:58:19'),
-(12, '123123', '12321321312312312312312312312312 312 312 312 312 3', 1, 30, '2019-01-20 12:59:16'),
-(13, 'MU', 'adhjashdjashd', 2, 30, '2019-01-20 13:00:46'),
-(14, 'hjghj ', ' fdjdf hsd gasdg', 2, 30, '2019-01-20 13:01:28'),
-(15, 'test', 'test test test test test test test test test test test test test ', 1, 37, '2019-01-20 15:25:16'),
-(17, 'Makc', '12312321 342134123412341241234', 1, 28, '2019-01-20 18:24:21');
+INSERT INTO `posts` (`id`, `title`, `content`, `image`, `id_category`, `id_user`, `date`) VALUES
+(18, 'Post1', 'fsad fas df sadfasdfasd fasdf', '5c5181da7b333.jpg', 2, 28, '2019-01-30 10:52:10'),
+(19, 'f asdf asdf sadf ', '12341234123412341234', '5c5181e967621.jpg', 1, 28, '2019-01-30 10:52:25'),
+(20, 'Title3', 'asd asdasdas das d', '5c518210540b7.jpg', 2, 28, '2019-01-30 10:53:04'),
+(21, 'чмситмитс', 'пывпывапывап', '5c51a481af982.jpg', 1, 28, '2019-01-30 13:20:02');
 
 -- --------------------------------------------------------
 
@@ -97,8 +92,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `email`, `password`, `username`, `status`, `verified`, `resettable`, `roles_mask`, `registered`, `last_login`, `force_logout`) VALUES
-(30, 'asd@mail.ru', '$2y$10$PHYQ1c4AchaF42GWZ0AjNu7675SDhbTmvL6i8.1iG9iVNeRxaoqFK', 'asd', 0, 1, 1, 0, 1547557813, 1547986551, 0),
-(28, 'makc@mail.ru', '$2y$10$TgxBBAmRuTqvZyEYMRybbefXxKAQZGI9ebWfkVPibxY84ohdKuCnC', 'makc', 0, 1, 1, 0, 1547557778, 1548010259, 2),
+(30, 'asd@mail.ru', '$2y$10$PHYQ1c4AchaF42GWZ0AjNu7675SDhbTmvL6i8.1iG9iVNeRxaoqFK', 'asd', 0, 1, 1, 0, 1547557813, 1548844762, 0),
+(28, 'makc@mail.ru', '$2y$10$WYdUdRB1kqqLolNNgnu4meH5yMiIDLbz8QwWK3WcdsEOhIk2qX756', 'makc', 0, 1, 1, 0, 1547557778, 1548861137, 3),
 (29, 'qwe@mail.ru', '$2y$10$5CWXCVxxsJaquFYehf2QiOjvVJXmA2qzSljNOWyNUA91YiQ1jVVVm', 'qwe', 0, 1, 1, 0, 1547557796, NULL, 0),
 (31, 'gsdfgsdf@vdsfsadgsdag.wer', '$2y$10$tBSEE4hk7a29kboXVGir3Oc4T.Ls3NsX/wMBhh3wKYsG8bTA2jAHu', 'gsdfg', 0, 0, 1, 0, 1547641421, NULL, 0),
 (32, 'hjklh@asdfsdaf.er', '$2y$10$hfMCbiImOkg/mzWwyICEmOTn.bStusCdjKGkWsj.tDzaOubpver9.', 'lhjkljk', 0, 0, 1, 0, 1547641496, NULL, 0),
@@ -106,7 +101,7 @@ INSERT INTO `users` (`id`, `email`, `password`, `username`, `status`, `verified`
 (34, 'proweb@proweb.uz', '$2y$10$rhvKvcWToX.3HdX9pJYCYOHAbERC1t16M2IBoZJzvqwHfd8XUp2h6', 'proweb', 0, 1, 1, 0, 1547642098, NULL, 0),
 (35, 'asdasd@asdasd.asdasd', '$2y$10$Jmpwpdzwsju.3fdzvYsutOqndwIQfoEcIkUhLjdM8/xtQ8OnfaCaa', 'asdasd', 0, 1, 1, 0, 1547642331, NULL, 0),
 (36, 'olga@mail.ru', '$2y$10$VX3ev8Vb9kgIOpByHBOR7O5Dx8iJjY9B0oRJmeMAIDmJWuKibMkkK', 'olga', 0, 1, 1, 0, 1547660576, 1547660617, 0),
-(37, 'test@mail.ru', '$2y$10$966YyuGhq9lbQM.QZgO2me.1dw6x9T.kTgxNUvxq5kqma7N3.Dz/m', 'test', 0, 1, 1, 0, 1547997843, 1548008928, 2);
+(37, 'test@mail.ru', '$2y$10$966YyuGhq9lbQM.QZgO2me.1dw6x9T.kTgxNUvxq5kqma7N3.Dz/m', 'test', 0, 1, 1, 0, 1547997843, 1548844712, 2);
 
 -- --------------------------------------------------------
 
@@ -209,7 +204,7 @@ INSERT INTO `users_throttling` (`bucket`, `tokens`, `replenished_at`, `expires_a
 ('HIJQJPUQ2qyyTt0Q7_AuZA0pXm27czJnqpJsoA5IFec', 49, 1548008556, 1548080556),
 ('jfCOXazRUbLWJ9PO_tkVMERNYPXGzrW5FkUrTUtrx-I', 0, 1548008545, 1548181345),
 ('4SIEqVSrUfbHDykIMNzQgj4bibgxQ9QnYLpxlq-85Dk', 2, 1548008545, 1548526945),
-('QduM75nGblH2CDKFyk0QeukPOwuEVDAUFE54ITnHM38', 67.4761, 1548010259, 1548550259);
+('QduM75nGblH2CDKFyk0QeukPOwuEVDAUFE54ITnHM38', 74, 1548861137, 1549401137);
 
 --
 -- Индексы сохранённых таблиц
@@ -279,7 +274,7 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT для таблицы `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- AUTO_INCREMENT для таблицы `users`
 --

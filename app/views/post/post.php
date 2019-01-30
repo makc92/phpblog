@@ -6,7 +6,7 @@
         <div class="col-12">
             <div class="post mb-4">
                 <div class="post-image mr-3 ">
-                    <img src="/img/post-bg.jpg" alt="">
+                    <img src="<?=getImage($postView['image']) ?>" alt="">
                 </div>
                 <div class="post-content">
                     <h4><?= $postView['title'] ?></h4>

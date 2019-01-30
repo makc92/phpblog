@@ -9,7 +9,7 @@
             <div class="post mb-4">
                 <div class="post-image mr-3 ">
                     <a href="/post/<?=$category['id']?>">
-                        <img src="../img/post-bg.jpg" alt="">
+                        <img src="<?=getImage($category['image']) ?>" alt="">
                     </a>
                 </div>
                 <div class="post-content">

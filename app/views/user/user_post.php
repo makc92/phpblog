@@ -8,7 +8,7 @@
         <div class="col-12">
             <div class="post mb-4">
                 <div class="post-image mr-3 ">
-                    <img src="../img/post-bg.jpg" alt="">
+                    <img src="<?=getImage($post['image']) ?>" alt="">
                 </div>
                 <div class="post-content">
                     <h4><a href="/post/<?=$post['id']?>"><?=$post['title']; ?></a></h4>
