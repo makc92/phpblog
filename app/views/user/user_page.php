@@ -1,6 +1,5 @@
 <?php $this->layout('auth/layout'); ?>
 <?php $auth = auth();
-d($auth)
 ?>
 <div class="col-8">
     <?=flash(); ?>

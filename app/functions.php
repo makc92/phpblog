@@ -24,6 +24,7 @@ function getCategories(){ //для того чтобы опрокинуть их
     $qb = new QueryBuilder($pdo,$query);
     return $qb->getAll('category');
 }
+
 function getCategory($id){ //для того чтобы опрокинуть их в sidebar, лучшего варианта я не нашел
     global $container;
     $pdo = $container->get('PDO');

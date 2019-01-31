@@ -15,4 +15,14 @@ class ImageManager
         $image->save("img/" . $filename);
         return $filename;
     }
+    public function deleteImage($filename){
+        unlink('img/' . $filename);
+    }
+
+    public function getImage($image)
+    {
+        $extension = pathinfo($image['name'], PATHINFO_EXTENSION);
+        $filename = uniqid() . "." . $extension;
+        return $filename;
+    }
 }

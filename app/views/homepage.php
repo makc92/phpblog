@@ -5,7 +5,6 @@
     <div class="row">
         <?php foreach ($postsView as $post): ?>
         <?php $category = getCategory($post['id_category']); ?>
-        <?php d($post) ?>
         <div class="col-12">
             <div class="post mb-4">
                 <div class="post-image mr-3 ">

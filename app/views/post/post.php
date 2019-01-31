@@ -7,6 +7,7 @@
             <div class="post mb-4">
                 <div class="post-image mr-3 ">
                     <img src="<?=getImage($postView['image']) ?>" alt="">
+                    <?=getCategory($postView['id_category']); ?>
                 </div>
                 <div class="post-content">
                     <h4><?= $postView['title'] ?></h4>
@@ -18,3 +19,4 @@
         </div>
     </div>
 </div>
+

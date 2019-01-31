@@ -61,9 +61,14 @@ class PostController
     }
     public function update_post($id)
     {
+        $oldImage = substr($_POST['oldImage'],5);
+        $image = $this->image->uploadImage($_FILES['file']);
+        $this->image->deleteImage($oldImage);
+
         $data = [
           'title'=> $_POST['title'],
           'content'=> $_POST['content'],
+            'image' => $image,
           'id_category'=> $_POST['category']
         ];
         $this->db->update('posts', $data, $id);
@@ -73,7 +78,9 @@ class PostController
     }
     public function delete_post($id)
     {
+        $filename = $this->db->getOne('posts', $id);
         $this->db->delete('posts', $id);
+        $this->image->deleteImage($filename['image']);
         flash()->success('Запись успешно удалена');
         redirect("/profile/user_post");
     }

@@ -19,7 +19,8 @@
             </select>
         </div>
         <div class="form-group">
-            <img src="<?=getImage($post['image']) ?>" alt="">
+            <img width="100" src="<?=getImage($post['image']) ?>" alt="">
+            <input type="hidden" name="oldImage" value="<?=getImage($post['image']) ?>">
         </div>
         <div class="custom-file my-3">
             <input type="file" class="custom-file-input" id="customFile" name="file">
