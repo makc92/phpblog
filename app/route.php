@@ -63,6 +63,12 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
     $r->addRoute('GET', '/user_post/edit/{id:\d+}', ['App\controllers\PostController', 'edit_post']);
     $r->addRoute('POST', '/user_post/update/{id:\d+}', ['App\controllers\PostController', 'update_post']);
     $r->addRoute('GET', '/user_post/delete/{id:\d+}', ['App\controllers\PostController', 'delete_post']);
+
+
+    $r->addRoute('GET', '/admin', ['App\controllers\AdminController', 'index']);
+    $r->addRoute('GET', '/admin/posts', ['App\controllers\AdminPostsController', 'index']);
+    $r->addRoute('GET', '/admin/users', ['App\controllers\AdminUsersController', 'index']);
+    $r->addRoute('GET', '/admin/category', ['App\controllers\AdminCategoryController', 'index']);
 });
 
 

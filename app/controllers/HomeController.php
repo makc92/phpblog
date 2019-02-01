@@ -33,6 +33,7 @@ class HomeController
         $posts = $this->db->getAllPaginate('posts', $itemsPerPage, $currentPage);
         $paginator = new Paginator(count($totalItems), $itemsPerPage, $currentPage, $urlPattern);
         echo $this->engine->render('homepage', ['postsView' => $posts, 'title'=>'Блог', 'paginator'=>$paginator]);
+
     }
     public function post($id)
     {
