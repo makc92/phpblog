@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.7.3
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Фев 01 2019 г., 17:32
--- Версия сервера: 5.6.38
--- Версия PHP: 7.1.12
+-- Время создания: Фев 01 2019 г., 23:25
+-- Версия сервера: 5.6.37
+-- Версия PHP: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -62,10 +62,12 @@ CREATE TABLE `posts` (
 --
 
 INSERT INTO `posts` (`id`, `title`, `content`, `image`, `id_category`, `id_user`, `date`) VALUES
-(18, 'Post1', 'fsad fas df sadfasdfasd fasdf', '5c5181da7b333.jpg', 2, 28, '2019-01-30 10:52:10'),
-(19, 'f asdf asdf sadf ', '12341234123412341234', '5c5181e967621.jpg', 1, 28, '2019-01-30 10:52:25'),
 (20, 'Title342ё12', 'asd asdasdas das d4фывфывфыв', '5c530342225da.jpg', 1, 28, '2019-01-31 14:16:34'),
-(21, 'makc php', 'php', '5c5303c649851.jpg', 1, 28, '2019-01-31 14:18:46');
+(21, 'makc php', 'php', '5c5303c649851.jpg', 1, 28, '2019-01-31 14:18:46'),
+(22, '123123123', 'asdfsadfasdfsadfsadfsadf sad fasd fasd f', '5c548f4e3e75a.png', 1, 28, '2019-02-01 18:26:22'),
+(23, 'Запись с админки', 'фываофы рваолфы рваофыр ваорфывоаыфва', '5c549933f17ce.png', 1, 28, '2019-02-01 19:09:14'),
+(25, 'JS2', 'fsad fasd fasd fasd f sdaf232323', '5c549ea18dcb8.png', 1, 28, '2019-02-01 19:31:45'),
+(26, '1231231321', 'asd fasd fasd fasd fasd fsad fsad f asdfsadf  asdfhjkasdhfjsdahgfsadgfhdgfhsadgfj sad fg jsadgfjsagfsa dfasgdasdjfsad f asdjfjsadgfjsad gjfgsd jfgsadj f', '5c549f2b4399a.png', 2, 28, '2019-02-01 19:34:03');
 
 -- --------------------------------------------------------
 
@@ -93,9 +95,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `email`, `password`, `username`, `status`, `verified`, `resettable`, `roles_mask`, `registered`, `last_login`, `force_logout`) VALUES
 (30, 'asd@mail.ru', '$2y$10$PHYQ1c4AchaF42GWZ0AjNu7675SDhbTmvL6i8.1iG9iVNeRxaoqFK', 'asd', 0, 1, 1, 0, 1547557813, 1548844762, 0),
-(28, 'makc@mail.ru', '$2y$10$WYdUdRB1kqqLolNNgnu4meH5yMiIDLbz8QwWK3WcdsEOhIk2qX756', 'makc', 0, 1, 1, 1, 1547557778, 1549028689, 3),
+(28, 'makc@mail.ru', '$2y$10$WYdUdRB1kqqLolNNgnu4meH5yMiIDLbz8QwWK3WcdsEOhIk2qX756', 'makc', 0, 1, 1, 1, 1547557778, 1549051356, 3),
 (29, 'qwe@mail.ru', '$2y$10$5CWXCVxxsJaquFYehf2QiOjvVJXmA2qzSljNOWyNUA91YiQ1jVVVm', 'qwe', 0, 1, 1, 0, 1547557796, NULL, 0),
-(37, 'test@mail.ru', '$2y$10$966YyuGhq9lbQM.QZgO2me.1dw6x9T.kTgxNUvxq5kqma7N3.Dz/m', 'test', 0, 1, 1, 0, 1547997843, 1549024282, 2);
+(37, 'test@mail.ru', '$2y$10$966YyuGhq9lbQM.QZgO2me.1dw6x9T.kTgxNUvxq5kqma7N3.Dz/m', 'test', 0, 1, 1, 0, 1547997843, 1549045658, 2);
 
 -- --------------------------------------------------------
 
@@ -158,6 +160,13 @@ CREATE TABLE `users_remembered` (
   `expires` int(10) UNSIGNED NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Дамп данных таблицы `users_remembered`
+--
+
+INSERT INTO `users_remembered` (`id`, `user`, `selector`, `token`, `expires`) VALUES
+(1, 28, '38frLrhP_7TStdfbtGMoG2Yq', '$2y$10$zeLoG5FMwWv0Kcnizygg7.xvzrGXjlo.2h/ZTg6B9ijDynROxuENy', 1580608864);
+
 -- --------------------------------------------------------
 
 --
@@ -198,7 +207,7 @@ INSERT INTO `users_throttling` (`bucket`, `tokens`, `replenished_at`, `expires_a
 ('HIJQJPUQ2qyyTt0Q7_AuZA0pXm27czJnqpJsoA5IFec', 49, 1548008556, 1548080556),
 ('jfCOXazRUbLWJ9PO_tkVMERNYPXGzrW5FkUrTUtrx-I', 0, 1548008545, 1548181345),
 ('4SIEqVSrUfbHDykIMNzQgj4bibgxQ9QnYLpxlq-85Dk', 2, 1548008545, 1548526945),
-('QduM75nGblH2CDKFyk0QeukPOwuEVDAUFE54ITnHM38', 63.4476, 1549028689, 1549568689);
+('QduM75nGblH2CDKFyk0QeukPOwuEVDAUFE54ITnHM38', 57.7184, 1549051264, 1549591264);
 
 --
 -- Индексы сохранённых таблиц
@@ -264,37 +273,31 @@ ALTER TABLE `users_throttling`
 --
 ALTER TABLE `category`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
 --
 -- AUTO_INCREMENT для таблицы `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
-
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 --
 -- AUTO_INCREMENT для таблицы `users`
 --
 ALTER TABLE `users`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
-
 --
 -- AUTO_INCREMENT для таблицы `users_confirmations`
 --
 ALTER TABLE `users_confirmations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
-
 --
 -- AUTO_INCREMENT для таблицы `users_remembered`
 --
 ALTER TABLE `users_remembered`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT для таблицы `users_resets`
 --
 ALTER TABLE `users_resets`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-COMMIT;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

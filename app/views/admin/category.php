@@ -2,7 +2,7 @@
 <a href="./add_category.html" class="btn btn-success my-3">Добавить категорию</a>
 <div class="card mb-3">
     <div class="card-header">
-        <i class="fas fa-table"></i>
+        <i class="fa fa-table"></i>
         Все категории</div>
     <div class="card-body">
         <div class="table-responsive">

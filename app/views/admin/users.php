@@ -2,14 +2,13 @@
 <a href="./add_user.html" class="btn btn-success my-3">Добавить пользователя</a>
 <div class="card mb-3">
     <div class="card-header">
-        <i class="fas fa-table"></i>
+        <i class="fa fa-table"></i>
         Пользователи</div>
     <div class="card-body">
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
                 <tr>
-                    <th>ID</th>
                     <th>Логин</th>
                     <th>Email</th>
                     <th>Роль</th>
@@ -17,48 +16,21 @@
                 </tr>
                 </thead>
                 <tbody>
+                <?php foreach ($users as $user): ?>
                 <tr>
-                    <td>1</td>
-                    <td>Makc</td>
-                    <td>makc@mail.ru</td>
+                    <td><?=$user['username'] ?></td>
+                    <td><?=$user['email'] ?></td>
                     <td>Администратор</td>
-                    <td class="d-flex justify-content-between">
-                        <a href="./delete.html" class="btn btn-danger">Удалить</a>
+                    <td style="width: 15%">
+                        <a href="" class="btn btn-danger">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </a>
                     </td>
                 </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Makc</td>
-                    <td>makc@mail.ru</td>
-                    <td>Администратор</td>
-                    <td class="d-flex justify-content-between">
-                        <a href="./delete.html" class="btn btn-danger">Удалить</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>Makc</td>
-                    <td>makc@mail.ru</td>
-                    <td>Администратор</td>
-                    <td class="d-flex justify-content-between">
-                        <a href="./delete.html" class="btn btn-danger">Удалить</a>
-                    </td>
-                </tr>
+                <?php endforeach; ?>
                 </tbody>
             </table>
-            <ul class="pagination justify-content-end">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item active" aria-current="page">
-                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Next</a>
-                </li>
-            </ul>
+            <?php require "../app/views/partials/paginationAdmin.php" ?>
         </div>
     </div>
 </div>

@@ -7,30 +7,81 @@
  */
 
 namespace App\controllers;
+
 use App\Classes\QueryBuilder;
 use League\Plates\Engine;
 use Delight\Auth\Auth;
 use JasonGrimes\Paginator;
+use App\classes\ImageManager;
 
 class AdminPostsController
 {
-    public function __construct(QueryBuilder $db, Engine $engine, Auth $auth)
+    public function __construct(QueryBuilder $db, Engine $engine, Auth $auth, ImageManager $image)
     {
         $this->db = $db;
         $this->engine = $engine;
         $this->auth = $auth;
+        $this->image = $image;
         if (!$this->auth->hasRole(\Delight\Auth\Role::ADMIN)) {
             echo $this->engine->render('404');
             die;
         }
     }
-    public  function index(){
+
+    public function index()
+    {
         $totalItems = $this->db->getAll('posts');
         $currentPage = $_GET['page'] ?? 1;
-        $itemsPerPage = 3;
+        $itemsPerPage = 5;
         $urlPattern = "?page=(:num)";
         $posts = $this->db->getAllPaginate('posts', $itemsPerPage, $currentPage);
         $paginator = new Paginator(count($totalItems), $itemsPerPage, $currentPage, $urlPattern);
-        echo $this->engine->render('admin/posts', ['title'=>'Админ панель', 'posts'=>$posts, 'paginator'=>$paginator]);
+        echo $this->engine->render('admin/posts/posts', ['title' => 'Админ панель', 'posts' => $posts, 'paginator' => $paginator]);
+    }
+
+    public function create_post()
+    {
+        echo $this->engine->render('admin/posts/add_post');
+    }
+
+    public function add_post()
+    {
+        $image = $this->image->uploadImage($_FILES['file']);
+        $data = [
+            'title' => $_POST['title'],
+            'content' => $_POST['content'],
+            'image' => $image,
+            'id_category' => $_POST['category'],
+            'id_user' => $_POST['user'],
+        ];
+        $this->db->insert($data, 'posts');
+        flash()->success('Запись успешно добавлена');
+        redirect("/admin/posts");
+    }
+    public function delete_post($id){
+        $filename = $this->db->getOne('posts', $id);
+        $this->db->delete('posts', $id);
+        $this->image->deleteImage($filename['image']);
+        flash()->success('Запись успешно удалена');
+        redirect("/admin/posts");
+    }
+    public function edit_post($id){
+        $post = $this->db->getOne('posts', $id);
+        echo $this->engine->render('admin/posts/edit_post', ['post'=>$post]);
+    }
+    public function update_post($id) {
+        $oldImage = substr($_POST['oldImage'],5);
+        $image = $this->image->uploadImage($_FILES['file']);
+        $this->image->deleteImage($oldImage);
+
+        $data = [
+            'title'=> $_POST['title'],
+            'content'=> $_POST['content'],
+            'image' => $image,
+            'id_category'=> $_POST['category']
+        ];
+        $this->db->update('posts', $data, $id);
+        flash()->success('Запись успешно обновлена');
+        redirect("/admin/posts");
     }
 }

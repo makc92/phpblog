@@ -21,8 +21,14 @@ class LoginController
 
     public function login()
     {
+        if (isset($_POST['remember'])) {
+            $rememberDuration = (int) (60 * 60 * 24 * 365.25);
+        }
+        else {
+            $rememberDuration = null;
+        }
         try {
-            $this->auth->login($_POST['email'], $_POST['password']);
+            $this->auth->login($_POST['email'], $_POST['password'],$rememberDuration);
 
             flash()->success('Вы успешно вошли');
             redirect("/profile");

@@ -1,8 +1,9 @@
 <?php $this->layout('admin/layout'); ?>
-<a href="./add_post.html" class="btn btn-success my-3">Добавить запись</a>
+<a href="/admin/posts/create_post" class="btn btn-success my-3">Добавить запись</a>
 <div class="card mb-3">
+    <?=flash(); ?>
     <div class="card-header">
-        <i class="fas fa-table"></i>
+        <i class="fa fa-table"></i>
         Все записи
     </div>
     <div class="card-body">
@@ -20,7 +21,7 @@
                 </thead>
                 <tbody>
                 <?php foreach ($posts as $post): ?>
-                    <? $category = getCategory($post['id_category']); ?>
+                    <?php $category = getCategory($post['id_category']); ?>
                     <tr>
                         <td><?= $post['title']; ?></td>
                         <td>
@@ -28,15 +29,15 @@
                         </td>
                         <td><?= $category['name']; ?></td>
                         <td>
-                            <img width="100" src="<?= getImage($post['image']) ?>" alt="">
+                            <img width="100" height="50" src="<?= getImage($post['image']) ?>" alt="">
                         </td>
                         <td><?= $post['date'] ?></td>
                         <td style="width: 15%">
-                            <a href="./edit_post.html" class="btn btn-warning">
-                                Изменить
+                            <a href="/admin/edit/<?=$post['id']; ?>" class="btn btn-warning">
+                                <i class="fa fa-pencil" aria-hidden="true"></i>
                             </a>
-                            <a href="./delete.html" class="btn btn-danger">
-                                Удалить
+                            <a href="/admin/delete/<?=$post['id']; ?>" class="btn btn-danger">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
                             </a>
                         </td>
                     </tr>
@@ -44,19 +45,6 @@
                 </tbody>
             </table>
             <?php require "../app/views/partials/paginationAdmin.php" ?>
-            <!--            <ul class="pagination justify-content-end">-->
-            <!--                <li class="page-item disabled">-->
-            <!--                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>-->
-            <!--                </li>-->
-            <!--                <li class="page-item"><a class="page-link" href="#">1</a></li>-->
-            <!--                <li class="page-item active" aria-current="page">-->
-            <!--                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>-->
-            <!--                </li>-->
-            <!--                <li class="page-item"><a class="page-link" href="#">3</a></li>-->
-            <!--                <li class="page-item">-->
-            <!--                    <a class="page-link" href="#">Next</a>-->
-            <!--                </li>-->
-            <!--            </ul>-->
         </div>
     </div>
 </div>

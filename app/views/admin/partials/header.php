@@ -15,7 +15,7 @@
     <link href="/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom fonts for this template-->
-    <link href="/css/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/css/font-awesome.css">
 
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin.css" rel="stylesheet">
@@ -30,7 +30,8 @@
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i></a>
+            <a class="nav-link" href="/"><i class="fa fa-sign-out" aria-hidden="true"></i>
+            </a>
         </li>
     </ul>
 

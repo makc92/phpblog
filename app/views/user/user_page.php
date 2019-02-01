@@ -1,6 +1,5 @@
 <?php $this->layout('auth/layout'); ?>
 <?php $auth = auth();
-d($auth->hasRole(\Delight\Auth\Role::ADMIN));
 ?>
 <div class="col-8">
     <?=flash(); ?>

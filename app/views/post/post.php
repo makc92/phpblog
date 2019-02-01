@@ -1,5 +1,5 @@
 <?php $this->layout('layout'); ?>
-
+<?php $category = getCategory($postView['id_category']); ?>
 <div class="col-lg-9">
     <h2 class="mb-4">Запись : <i><?=  $postView['title']; ?></i> </h2>
     <div class="row">
@@ -7,12 +7,11 @@
             <div class="post mb-4">
                 <div class="post-image mr-3 ">
                     <img src="<?=getImage($postView['image']) ?>" alt="">
-                    <?=getCategory($postView['id_category']); ?>
                 </div>
                 <div class="post-content">
                     <h4><?= $postView['title'] ?></h4>
                     <p><?= $postView['content'] ?></p>
-                    <p class="category"><a href="/category.html"><?=$category_name['name'] ?></a></p>
+                    <p class="category">Категория: <a href="/category.html"><?=$category['name'] ?></a></p>
                     <p>Запись добавлена: <b><?=$postView['date'] ?></b></p>
                 </div>
             </div>
