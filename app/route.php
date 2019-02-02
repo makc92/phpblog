@@ -67,13 +67,21 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
 
     $r->addRoute('GET', '/admin', ['App\controllers\AdminController', 'index']);
     $r->addRoute('GET', '/admin/posts', ['App\controllers\AdminPostsController', 'index']);
-    $r->addRoute('GET', '/admin/users', ['App\controllers\AdminUsersController', 'index']);
-    $r->addRoute('GET', '/admin/category', ['App\controllers\AdminCategoryController', 'index']);
     $r->addRoute('GET', '/admin/posts/create_post', ['App\controllers\AdminPostsController', 'create_post']);
     $r->addRoute('POST', '/admin/add_post', ['App\controllers\AdminPostsController', 'add_post']);
     $r->addRoute('GET', '/admin/delete/{id:\d+}', ['App\controllers\AdminPostsController', 'delete_post']);
     $r->addRoute('GET', '/admin/edit/{id:\d+}', ['App\controllers\AdminPostsController', 'edit_post']);
     $r->addRoute('POST', '/admin/update/{id:\d+}', ['App\controllers\AdminPostsController', 'update_post']);
+    $r->addRoute('GET', '/admin/category', ['App\controllers\AdminCategoryController', 'index']);
+    $r->addRoute('GET', '/admin/category/create', ['App\controllers\AdminCategoryController', 'create']);
+    $r->addRoute('POST', '/admin/category/add', ['App\controllers\AdminCategoryController', 'add']);
+    $r->addRoute('GET', '/admin/category/delete/{id:\d+}', ['App\controllers\AdminCategoryController', 'delete']);
+    $r->addRoute('GET', '/admin/category/edit/{id:\d+}', ['App\controllers\AdminCategoryController', 'edit']);
+    $r->addRoute('POST', '/admin/category/update/{id:\d+}', ['App\controllers\AdminCategoryController', 'update']);
+    $r->addRoute('GET', '/admin/users', ['App\controllers\AdminUsersController', 'index']);
+    $r->addRoute('GET', '/admin/users/ban/{id:\d+}', ['App\controllers\AdminUsersController', 'ban']);
+    $r->addRoute('GET', '/admin/users/unban/{id:\d+}', ['App\controllers\AdminUsersController', 'unban']);
+    $r->addRoute('GET', '/admin/users/getAdmin/{id:\d+}', ['App\controllers\AdminUsersController', 'getAdmin']);
 });
 
 

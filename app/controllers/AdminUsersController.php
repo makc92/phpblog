@@ -31,7 +31,42 @@ class AdminUsersController
         $urlPattern = "?page=(:num)";
         $users = $this->db->getAllPaginate('users', $itemsPerPage, $currentPage);
         $paginator = new Paginator(count($totalItems), $itemsPerPage, $currentPage, $urlPattern);
-        echo $this->engine->render('admin/users', ['title' => 'Админ панель', 'users' => $users, 'paginator' => $paginator]);
+        echo $this->engine->render('admin/users/users', ['title' => 'Админ панель', 'users' => $users, 'paginator' => $paginator]);
+    }
+
+    public function ban($id)
+    {
+        $data = [
+            'status' => \Delight\Auth\Status::BANNED
+        ];
+        $this->db->update('users', $data, $id);
+        redirect("/admin/users");
+    }
+    public function unban($id)
+    {
+        $data = [
+            'status' => \Delight\Auth\Status::NORMAL
+        ];
+        $this->db->update('users', $data, $id);
+        redirect("/admin/users");
+    }
+
+    public function getAdmin($id)
+    {
+        try {
+            $this->auth->admin()->removeRoleForUserById($id, \Delight\Auth\Role::AUTHOR);
+            try {
+                $this->auth->admin()->addRoleForUserById($id, \Delight\Auth\Role::ADMIN);
+                redirect("/admin/users");
+            }
+            catch (\Delight\Auth\UnknownIdException $e) {
+                redirect("/admin/users");
+            }
+        }
+        catch (\Delight\Auth\UnknownIdException $e) {
+            redirect("/admin/users");
+        }
+
     }
 
 }

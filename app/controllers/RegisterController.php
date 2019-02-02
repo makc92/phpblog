@@ -10,6 +10,7 @@ namespace App\controllers;
 use App\classes\Mailer;
 use League\Plates\Engine;
 use Delight\Auth\Auth;
+use App\Classes\QueryBuilder;
 
 class RegisterController
 {
@@ -17,11 +18,12 @@ class RegisterController
     private $auth;
     private $mail;
 
-    public function __construct(Engine $engine, Auth $auth, Mailer $mailer)
+    public function __construct(Engine $engine, Auth $auth, Mailer $mailer, QueryBuilder $db)
     {
         $this->engine = $engine;
         $this->auth = $auth;
         $this->mail = $mailer;
+        $this->db = $db;
     }
 
     public function index()
@@ -32,12 +34,15 @@ class RegisterController
     public function register()
     {
         try {
-            $this->auth->register($_POST['email'], $_POST['password'], $_POST['name'], function ($selector, $token) {
+            $id = $this->auth->register($_POST['email'], $_POST['password'], $_POST['name'], function ($selector, $token) {
                 flash()->success(['На вашу почту ' . $_POST['email'] . ' был отправлен код с подтверждением.']);
                 $mess =  "<a href=\"http://phpblog/verify?selector={$selector}&token={$token}\">подтвердить email</a>";
                 $this->mail->send($_POST['email'], $mess);
-
             });
+            $data = [
+                'roles_mask'=> \Delight\Auth\Role::AUTHOR
+            ];
+            $this->db->update('users', $data, $id);
             redirect("/register");
             die;
         }
@@ -68,6 +73,7 @@ class RegisterController
                 $mess =  "<a href=\"http://phpblog/recovery?selector={$selector}&token={$token}\">Подтвердите смену пароля</a>";
                 $this->mail->send($_POST['email'], $mess);
             });
+
 
             redirect("/forgot_password");
             die;

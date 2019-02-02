@@ -20,7 +20,6 @@ class VerifyController
     {
         try {
             $this->auth->confirmEmail($_GET['selector'], $_GET['token']);
-
             flash()->success('Вы подтвердили свой email');
             redirect("/register");
             die;

@@ -6,6 +6,7 @@ use App\Classes\QueryBuilder;
 
 $container = new Container();
 
+
 function auth(){
     global $container;
     return new Auth($container->get('PDO'));

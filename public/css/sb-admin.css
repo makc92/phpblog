@@ -373,3 +373,12 @@ body.sidebar-toggled footer.sticky-footer {
     width: calc(100% - 90px);
   }
 }
+
+
+.banned {
+  margin-left: 20px;
+  background: red;
+  color: #fff;
+  padding: 3px 20px;
+  border-radius: 5px;
+}
