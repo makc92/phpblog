@@ -31,4 +31,9 @@ class AdminController
     public  function index(){
         echo $this->engine->render('admin/homepage', ['title'=>'Админ панель']);
     }
+    public  function logout(){
+        $this->auth->logOut();
+        redirect("/");
+        die;
+    }
 }

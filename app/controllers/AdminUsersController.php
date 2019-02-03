@@ -60,13 +60,26 @@ class AdminUsersController
                 redirect("/admin/users");
             }
             catch (\Delight\Auth\UnknownIdException $e) {
+                flash()->error(['неверный ID']);
                 redirect("/admin/users");
             }
         }
         catch (\Delight\Auth\UnknownIdException $e) {
+            flash()->error(['неверный ID']);
             redirect("/admin/users");
         }
 
+    }
+    public function deleteUser($id){
+        try {
+            $this->auth->admin()->deleteUserById($id);
+            flash()->success(["Пользователь Удален"]);
+            redirect("/admin/users");
+        }
+        catch (\Delight\Auth\UnknownIdException $e) {
+            flash()->error(['неверный ID']);
+            redirect("/admin/users");
+        }
     }
 
 }

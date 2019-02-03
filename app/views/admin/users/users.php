@@ -9,6 +9,7 @@ $normalUser = 0;
         <i class="fa fa-table"></i>
         Пользователи</div>
     <div class="card-body">
+        <?=flash(); ?>
         <div class="table-responsive">
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                 <thead>
@@ -43,7 +44,7 @@ $normalUser = 0;
                             <a href="/admin/users/getAdmin/<?=$user['id']?>" class="btn btn-success">
                                 Назначить администратором
                             </a>
-                            <a href="" class="btn btn-danger">
+                            <a href="/admin/users/delete/<?=$user['id']?>" class="btn btn-danger">
                                 Удалить
                             </a>
                         <?php else: ?>

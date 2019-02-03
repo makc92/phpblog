@@ -1,6 +1,6 @@
 <?php $this->layout('layout', ['title' => 'HomePage']); ?>
-<?php //$postsView = array_reverse($postsView); ?>
 <div class="col-lg-9">
+    <?=flash(); ?>
     <h2 class="mb-4"><?= $title; ?></h2>
     <div class="row">
         <?php foreach ($postsView as $post): ?>

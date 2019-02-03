@@ -19,17 +19,16 @@ class UserController
         $this->engine = $engine;
         $this->auth = $auth;
         $this->mail = $mailer;
+        if(!$this->auth->isLoggedIn()) {
+            flash()->error('Ты не залогинен');
+            redirect("/");
+            die;
+        }
     }
 
     public function index()
     {
-        if($this->auth->isLoggedIn()) {
-            echo $this->engine->render('user/user_page');
-        }
-        else {
-            flash()->error('Залогиньтесь');
-            echo $this->engine->render('error');
-        }
+        echo $this->engine->render('user/user_page');
     }
     public function userinfo()
     {
@@ -43,7 +42,8 @@ class UserController
                 $this->db->update('users',['username'=>$_POST['name']], $id);
                 $this->auth->changeEmail($_POST['email'], function ($selector, $token) {
                     flash()->success(['На вашу почту ' . $_POST['email'] . ' был отправлен код с подтверждением. Изменение вступит в силу, как только новый адрес электронной почты будет подтвержден']);
-                    $mess = "<a href=\"http://phpblog/changemail?selector={$selector}&token={$token}\">подтвердите смену email</a>";
+                    $url = 'http://phpblog/changemail?selector=' . \urlencode($selector) . '&token=' . \urlencode($token);
+                    $mess = "<a href=\"$url\">подтвердите смену email</a>";
                     $this->mail->send($_POST['email'], $mess);
                 });
                 redirect("/profile");

@@ -30,7 +30,8 @@
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-            <a class="nav-link" href="/"><i class="fa fa-sign-out" aria-hidden="true"></i>
+            <a class="nav-link text-white " href="/">
+                Выйти в блог<i class="fa fa-clipboard ml-2" aria-hidden="true"></i>
             </a>
         </li>
     </ul>

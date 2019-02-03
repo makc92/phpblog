@@ -17,4 +17,10 @@
             <span>Категории</span>
         </a>
     </li>
+    <li class="nav-item active">
+        <a class="nav-link" href="/admin/logout">
+            <i class="fa fa-sign-out" aria-hidden="true"></i>
+            <span>Выйти</span>
+        </a>
+    </li>
 </ul>

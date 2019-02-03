@@ -22,6 +22,11 @@ class PostController
         $this->engine = $engine;
         $this->auth = $auth;
         $this->image = $image;
+        if(!$this->auth->isLoggedIn()) {
+            flash()->error('Ты не залогинен');
+            redirect("/");
+            die;
+        }
     }
     public function index()
     {

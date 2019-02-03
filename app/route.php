@@ -66,6 +66,7 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
 
 
     $r->addRoute('GET', '/admin', ['App\controllers\AdminController', 'index']);
+    $r->addRoute('GET', '/admin/logout', ['App\controllers\AdminController', 'logout']);
     $r->addRoute('GET', '/admin/posts', ['App\controllers\AdminPostsController', 'index']);
     $r->addRoute('GET', '/admin/posts/create_post', ['App\controllers\AdminPostsController', 'create_post']);
     $r->addRoute('POST', '/admin/add_post', ['App\controllers\AdminPostsController', 'add_post']);
@@ -82,6 +83,7 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
     $r->addRoute('GET', '/admin/users/ban/{id:\d+}', ['App\controllers\AdminUsersController', 'ban']);
     $r->addRoute('GET', '/admin/users/unban/{id:\d+}', ['App\controllers\AdminUsersController', 'unban']);
     $r->addRoute('GET', '/admin/users/getAdmin/{id:\d+}', ['App\controllers\AdminUsersController', 'getAdmin']);
+    $r->addRoute('GET', '/admin/users/delete/{id:\d+}', ['App\controllers\AdminUsersController', 'deleteUser']);
 });
 
 

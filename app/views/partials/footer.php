@@ -1,5 +1,5 @@
 <footer>
-    <p>Lorem ipsum dolor sit, amet consectetur adipisicing.</p>
+    <p>Makc 2019</p>
 </footer>
 
 <script src="js/jquery_3.2.1.js"></script>

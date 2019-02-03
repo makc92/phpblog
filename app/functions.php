@@ -6,19 +6,19 @@ use App\Classes\QueryBuilder;
 
 $container = new Container();
 
-
+/*Чтобы можно было пользоваться объекто Auth в частях страниц*/
 function auth(){
     global $container;
     return new Auth($container->get('PDO'));
 }
-
+/*Чтобы можно было пользоваться объекто Auth в частях страниц*/
 
 function redirect($path){
     header("Location: $path");
     exit;
 }
-
-function getCategories(){ //для того чтобы опрокинуть их в sidebar, лучшего варианта я не нашел
+/*Чтобы кинуть категории в sidebar, но мне кажется есть другой способ скорее всего*/
+function getCategories(){
     global $container;
     $pdo = $container->get('PDO');
     $query = $container->get('Aura\SqlQuery\QueryFactory');
@@ -26,20 +26,24 @@ function getCategories(){ //для того чтобы опрокинуть их
     return $qb->getAll('category');
 }
 
-function getCategory($id){ //для того чтобы опрокинуть их в sidebar, лучшего варианта я не нашел
+function getCategory($id){
     global $container;
     $pdo = $container->get('PDO');
     $query = $container->get('Aura\SqlQuery\QueryFactory');
     $qb = new QueryBuilder($pdo,$query);
     return $qb->getOne('category',$id);
 }
-function countCategory($id){ //для того чтобы опрокинуть их в sidebar, лучшего варианта я не нашел
+function countCategory($id){
     global $container;
     $pdo = $container->get('PDO');
     $query = $container->get('Aura\SqlQuery\QueryFactory');
     $qb = new QueryBuilder($pdo,$query);
     return count($qb->getAllbyID('posts', 'id_category', 'id', $id ));
 }
+/*Чтобы кинуть категории в sidebar, но мне кажется есть другой способ скорее всего*/
+
+
+
 function getImage($image){
     return '/img/' . $image;
 }

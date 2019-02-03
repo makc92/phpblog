@@ -36,7 +36,9 @@ class RegisterController
         try {
             $id = $this->auth->register($_POST['email'], $_POST['password'], $_POST['name'], function ($selector, $token) {
                 flash()->success(['На вашу почту ' . $_POST['email'] . ' был отправлен код с подтверждением.']);
-                $mess =  "<a href=\"http://phpblog/verify?selector={$selector}&token={$token}\">подтвердить email</a>";
+                $url = 'http://phpblog/verify?selector=' . \urlencode($selector) . '&token=' . \urlencode($token);
+                $mess =  "<a href=\"$url\">подтвердить email</a>";
+//                $mess =  "<a href=\"http://phpblog/verify?selector={$selector}&token={$token}\">подтвердить email</a>";
                 $this->mail->send($_POST['email'], $mess);
             });
             $data = [

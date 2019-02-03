@@ -21,15 +21,22 @@ class LoginController
 
     public function login()
     {
-        if (isset($_POST['remember'])) {
-            $rememberDuration = (int) (60 * 60 * 24 * 365.25);
-        }
-        else {
-            $rememberDuration = null;
-        }
         try {
+            if (isset($_POST['remember'])) {
+                $rememberDuration = (int) (60 * 60 * 24 * 365.25);
+            }
+            else {
+                $rememberDuration = '';
+            }
             $this->auth->login($_POST['email'], $_POST['password'],$rememberDuration);
-
+            /*Проверка на Бан*/
+            if($this->auth->isBanned()) {
+                flash()->error('Вы забанены');
+                $this->auth->logOut();
+                redirect('/login');
+                die;
+            }
+            /*Проверка на Бан*/
             flash()->success('Вы успешно вошли');
             redirect("/profile");
             die;
@@ -55,4 +62,5 @@ class LoginController
         redirect("/");
         die;
     }
+
 }

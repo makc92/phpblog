@@ -13,6 +13,7 @@ class QueryBuilder
         $this->pdo = $pdo;
         $this->queryFactory = $queryFactory;
     }
+    /*получить все записи*/
     public function getAll($table, $order= 'id'){
         $select = $this->queryFactory->newSelect();
         $select->cols(['*'])
@@ -25,6 +26,7 @@ class QueryBuilder
         $result = $sth->fetchAll(PDO::FETCH_ASSOC);
         return $result;
     }
+    /*добавить запись*/
     public function insert($data, $table){
         $insert = $this->queryFactory->newInsert();
         $insert
@@ -36,25 +38,7 @@ class QueryBuilder
         $sth->execute($insert->getBindValues());
 
     }
-    public function faker(){
-        $faker = Factory::create();
-//            d($faker);die;
-        $insert = $this->queryFactory->newInsert();
-        $insert->into('posts')     ;              // INTO this table
-        for ($i = 0; $i < 5; $i ++) {
-            $insert
-                ->cols([
-                    'title' => $faker->words(3,true)
-                ]);
-//                $insert->addRow();
-        }
-
-
-        $sth = $this->pdo->prepare($insert->getStatement());
-
-        $sth->execute($insert->getBindValues());
-
-    }
+    /*обновить запись*/
     public function update($table, $data, $id){
         $update = $this->queryFactory->newUpdate();
 
@@ -67,6 +51,7 @@ class QueryBuilder
 
         $sth->execute($update->getBindValues());
     }
+    /*удалить запись*/
     public function delete($table, $id){
         $delete = $this->queryFactory->newDelete();
         $delete
@@ -76,7 +61,7 @@ class QueryBuilder
         $sth = $this->pdo->prepare($delete->getStatement());
         $sth->execute($delete->getBindValues());
     }
-
+    /*получить одну запись*/
     public function getOne($table, $id)
     {
         $select = $this->queryFactory->newSelect();
@@ -91,6 +76,7 @@ class QueryBuilder
         $result = $sth->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
+
     public function getAllbyID($table,$col,$order='id',$id){
         $select = $this->queryFactory->newSelect();
         $select->cols(['*'])
