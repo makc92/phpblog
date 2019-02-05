@@ -12,7 +12,7 @@
     <title>SB Admin - Dashboard</title>
 
     <!-- Bootstrap core CSS-->
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom fonts for this template-->
     <link rel="stylesheet" href="/css/font-awesome.css">

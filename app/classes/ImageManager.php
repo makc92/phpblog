@@ -9,11 +9,17 @@ Image::configure(array('driver' => 'gd'));
 class ImageManager
 {
     public function uploadImage($image){
-        $extension = pathinfo($image['name'], PATHINFO_EXTENSION);
-        $filename = uniqid() . "." . $extension;
-        $image = Image::make($image['tmp_name']);
-        $image->save("img/" . $filename);
-        return $filename;
+        /*Рабоате но мне кажется, что это такая дичь)*/
+        if(!empty($image['name'])){
+            $extension = pathinfo($image['name'], PATHINFO_EXTENSION);
+            $filename = uniqid() . "." . $extension;
+            $image = Image::make($image['tmp_name']);
+            $image->save("img/" . $filename);
+            return $filename;
+        }
+        else {
+            return null;
+        }
     }
     public function deleteImage($filename){
         unlink('img/' . $filename);

@@ -34,6 +34,8 @@ return array(
     'Delight\\Auth\\' => array($vendorDir . '/delight-im/auth/src'),
     'DI\\' => array($vendorDir . '/php-di/php-di/src'),
     'Aura\\SqlQuery\\' => array($vendorDir . '/aura/sqlquery/src'),
+    'Aura\\Filter\\_Config\\' => array($vendorDir . '/aura/filter/config'),
+    'Aura\\Filter\\' => array($vendorDir . '/aura/filter/src'),
     'App\\' => array($baseDir . '/app'),
     '' => array($vendorDir . '/nesbot/carbon/src'),
 );

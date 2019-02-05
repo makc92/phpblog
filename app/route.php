@@ -5,6 +5,7 @@ use DI\ContainerBuilder;
 use Intervention\Image\ImageManager;
 use League\Plates\Engine;
 
+$templates = new League\Plates\Engine('../app/views');
 $ContainerBuilder = new ContainerBuilder();
 $ContainerBuilder->addDefinitions(array(
     Engine::class => function(){
@@ -34,7 +35,6 @@ $container = $ContainerBuilder->build();
 
 $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) {
     $r->addRoute('GET', '/', ['App\controllers\HomeController', 'index']);
-    $r->addRoute('GET', '/post/{id:\d+}', ['App\controllers\HomeController', 'post']);
     $r->addRoute('GET', '/category/{name}', ['App\controllers\HomeController', 'getСategory']);
 
     $r->addRoute('GET', '/register', ['App\controllers\RegisterController', 'index']);
@@ -57,6 +57,7 @@ $dispatcher = FastRoute\simpleDispatcher(function (FastRoute\RouteCollector $r) 
     $r->addRoute('GET', '/profile/password', ['App\controllers\UserController', 'user_password']);
     $r->addRoute('POST', '/profile/password/change', ['App\controllers\UserController', 'change_password']);
 
+    $r->addRoute('GET', '/post/{id:\d+}', ['App\controllers\PostController', 'post']);
     $r->addRoute('GET', '/profile/user_post', ['App\controllers\PostController', 'index']);
     $r->addRoute('GET', '/profile/user_post/add', ['App\controllers\PostController', 'create_post']);
     $r->addRoute('POST', '/add_post', ['App\controllers\PostController', 'add_post']);
@@ -101,8 +102,7 @@ $routeInfo = $dispatcher->dispatch($httpMethod, $uri);
 //d($routeInfo);
 switch ($routeInfo[0]) {
     case FastRoute\Dispatcher::NOT_FOUND:
-        // ... 404 Not Found
-        echo 404;
+        echo $templates->render('404');
         break;
     case FastRoute\Dispatcher::METHOD_NOT_ALLOWED:
         $allowedMethods = $routeInfo[1];

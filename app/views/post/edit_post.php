@@ -27,6 +27,6 @@
             <label class="custom-file-label" for="customFile">Choose file</label>
         </div>
         <button type="submit" class="btn btn-warning">Редактировать запись</button>
-        <a href="/user_post" class="btn btn-info">К моим записям</a>
+        <a href="/profile/user_post" class="btn btn-info">К моим записям</a>
     </form>
 </div>

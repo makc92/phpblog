@@ -11,19 +11,27 @@ use App\classes\Mailer;
 use League\Plates\Engine;
 use Delight\Auth\Auth;
 use App\Classes\QueryBuilder;
+use Aura\Filter\FilterFactory;
+
 
 class RegisterController
 {
     private $engine;
     private $auth;
     private $mail;
+    private $validate;
+    private $filter;
 
-    public function __construct(Engine $engine, Auth $auth, Mailer $mailer, QueryBuilder $db)
+    public function __construct(Engine $engine, Auth $auth, Mailer $mailer, QueryBuilder $db,FilterFactory $validate)
     {
         $this->engine = $engine;
         $this->auth = $auth;
         $this->mail = $mailer;
         $this->db = $db;
+        /*Вот это правильно ли?*/
+        $this->validate = $validate;
+        $this->filter = $this->validate->newSubjectFilter();
+        /*Вот это правильно ли?*/
     }
 
     public function index()
@@ -33,12 +41,21 @@ class RegisterController
     }
     public function register()
     {
+        $filterData = [
+            'name' =>$_POST['name'],
+            'email' =>$_POST['email'],
+            'password' =>$_POST['password'],
+        ];
+        $this->filter->validate("name")->isNotBlank()->setMessage('Вы не заполнили имя');
+        $this->filter->validate("email")->isNotBlank()->setMessage('Вы не заполнили email');
+        $this->filter->validate("password")->isNotBlank()->setMessage('Вы не заполнили пароль');
+        $this->validate($filterData);
+
         try {
             $id = $this->auth->register($_POST['email'], $_POST['password'], $_POST['name'], function ($selector, $token) {
                 flash()->success(['На вашу почту ' . $_POST['email'] . ' был отправлен код с подтверждением.']);
                 $url = 'http://phpblog/verify?selector=' . \urlencode($selector) . '&token=' . \urlencode($token);
                 $mess =  "<a href=\"$url\">подтвердить email</a>";
-//                $mess =  "<a href=\"http://phpblog/verify?selector={$selector}&token={$token}\">подтвердить email</a>";
                 $this->mail->send($_POST['email'], $mess);
             });
             $data = [
@@ -125,5 +142,17 @@ class RegisterController
         }
         redirect("/recovery");
         die;
+    }
+    public function validate($data) {
+        $valid = $this->filter->apply($data);
+        if(!$valid){
+            $failures = $this->filter->getFailures();
+            $messages = $failures->getMessages();
+            foreach ($messages as $message){
+                flash()->error($message);
+            }
+            redirect('/register');
+            die;
+        }
     }
 }

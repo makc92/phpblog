@@ -10,7 +10,8 @@
     "illuminate/support": "^5.7",
     "eoghanobrien/php-simple-mail": "^1.7",
     "jasongrimes/paginator": "^1.0",
-    "intervention/image": "^2.4"
+    "intervention/image": "^2.4",
+    "aura/filter": "^2.3"
   },
   "autoload": {
     "psr-4": {

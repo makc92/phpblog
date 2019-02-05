@@ -76,6 +76,8 @@ class ComposerStaticInit2623db6441a38370a0a00dba1cbfe86e
         'A' => 
         array (
             'Aura\\SqlQuery\\' => 14,
+            'Aura\\Filter\\_Config\\' => 20,
+            'Aura\\Filter\\' => 12,
             'App\\' => 4,
         ),
     );
@@ -192,6 +194,14 @@ class ComposerStaticInit2623db6441a38370a0a00dba1cbfe86e
         'Aura\\SqlQuery\\' => 
         array (
             0 => __DIR__ . '/..' . '/aura/sqlquery/src',
+        ),
+        'Aura\\Filter\\_Config\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/aura/filter/config',
+        ),
+        'Aura\\Filter\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/aura/filter/src',
         ),
         'App\\' => 
         array (
