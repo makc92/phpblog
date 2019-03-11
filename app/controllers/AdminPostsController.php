@@ -70,9 +70,14 @@ class AdminPostsController
         echo $this->engine->render('admin/posts/edit_post', ['post'=>$post]);
     }
     public function update_post($id) {
-        $oldImage = substr($_POST['oldImage'],5);
-        $image = $this->image->uploadImage($_FILES['file']);
-        $this->image->deleteImage($oldImage);
+        $oldImage = substr($_POST['oldImage'], 5); //название старой картинки, чтобы удалить
+        if (empty($_FILES['file']['tmp_name'])) {
+            $image = $oldImage;
+        }
+        else {
+            $image = $this->image->uploadImage($_FILES['file']);
+            $this->image->deleteImage($oldImage);
+        }
 
         $data = [
             'title'=> $_POST['title'],

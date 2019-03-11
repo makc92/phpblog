@@ -45,11 +45,12 @@ class PostController
         $paginator = new Paginator(count($totalItems), $itemsPerPage, $currentPage, $urlPattern);
         echo $this->engine->render('user/user_post', ['user_posts' => $posts, 'paginator' => $paginator]);
     }
+
     public function post($id)
     {
         $post = $this->db->getOne('posts', $id);
-        $category_name = $this->db->getOne('category','id_category' ,$post['id_category']);
-        echo $this->engine->render('post/post', ['post' => $post, 'category_name'=>$category_name]);
+        $category_name = $this->db->getOne('category', 'id_category', $post['id_category']);
+        echo $this->engine->render('post/post', ['post' => $post, 'category_name' => $category_name]);
     }
 
     public function create_post()
@@ -101,15 +102,21 @@ class PostController
             'content' => $_POST['content'],
             'category' => $_POST['category'],
         ];
+
         /*Сама фильрация*/
         $this->filter->validate("title")->isNotBlank()->setMessage('Вы не заполнили название статьи');
         $this->filter->validate("content")->isNotBlank()->setMessage('Вы не заполнили контент статьи');
         $this->filter->validate("category")->isNotBlank()->is('int')->setMessage('Категория выбрана неверное');
         $this->validate($filterData);
-        /* Приходится обязательно перезагружать картинку */
+
         $oldImage = substr($_POST['oldImage'], 5); //название старой картинки, чтобы удалить
-        $image = $this->image->uploadImage($_FILES['file']);
-        $this->image->deleteImage($oldImage);
+        if (empty($_FILES['file']['tmp_name'])) {
+            $image = $oldImage;
+        }
+        else {
+            $image = $this->image->uploadImage($_FILES['file']);
+            $this->image->deleteImage($oldImage);
+        }
 
         $data = [
             'title' => $_POST['title'],

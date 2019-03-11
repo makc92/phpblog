@@ -4,7 +4,6 @@ use Delight\Auth\Auth;
 use DI\ContainerBuilder;
 use Intervention\Image\ImageManager;
 use League\Plates\Engine;
-
 $templates = new League\Plates\Engine('../app/views');
 $ContainerBuilder = new ContainerBuilder();
 $ContainerBuilder->addDefinitions(array(
@@ -19,6 +18,7 @@ $ContainerBuilder->addDefinitions(array(
         $password = "";
 
         return new PDO("$driver:host=$host;dbname=$db_name", $user, $password);
+        //return new PDO("$db[driver]:host=$db[host];dbname=$db[db_name]", $db['user'], $db['password']);
     },
     Auth::class => function($container){
         return new Auth($container->get('PDO'));

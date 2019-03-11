@@ -17,7 +17,7 @@ function redirect($path){
     header("Location: $path");
     exit;
 }
-/*Чтобы кинуть категории в sidebar, но мне кажется есть другой способ скорее всего*/
+/*Чтобы кинуть категории в sidebar*/
 function getCategories(){
     global $container;
     $pdo = $container->get('PDO');
@@ -40,7 +40,7 @@ function countCategory($id){
     $db = new QueryBuilder($pdo,$query);
     return count($db->getAllbyID('posts', 'id_category', 'id', $id ));
 }
-/*Чтобы кинуть категории в sidebar, но мне кажется есть другой способ скорее всего*/
+
 
 
 
