@@ -16,6 +16,9 @@
                     <h4><a href="/post/<?=$category['id']?>"><?=$category['title'] ?></a></h4>
                     <p><?=$category['content'] ?></p>
                     <p>Запись добавлена: <b><?=$category['date'] ?></b></p>
+                    <p>Автор:
+                        <b><?php echo getUserName($category['id_user']); ?></b>
+                    </p>
                     <a href="/post/<?=$category['id']?>" class="btn btn-primary">Read Post</a>
                 </div>
             </div>

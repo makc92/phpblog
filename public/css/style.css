@@ -32,3 +32,6 @@ body {
     display: flex;
     justify-content: space-between;
 }
+.file-input-name {
+    color: #6610f2;
+}

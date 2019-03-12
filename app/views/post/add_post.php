@@ -23,7 +23,7 @@ $auth = auth();
         </div>
         <input type="hidden" name="user" value="<?=$auth->getUserId();?>">
         <div class="custom-file my-3">
-            <input type="file" class="custom-file-input" id="customFile" name="file">
+            <input type="file" class="custom-file-input" id="customFile" name="file" onchange="$('#upload-file-info').html(this.files[0].name)">
             <label class="custom-file-label" for="customFile">Choose file</label>
         </div>
         <button type="submit" class="btn btn-primary">Добавить запись</button>

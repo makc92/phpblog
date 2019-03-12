@@ -12,6 +12,9 @@
                     <h4><?= $post['title'] ?></h4>
                     <p><?= $post['content'] ?></p>
                     <p class="category">Категория: <b><?=$category['name'] ?></b></p>
+                    <p>Автор:
+                        <b><?php echo getUserName($post['id_user']); ?></b>
+                    </p>
                     <p>Запись добавлена: <b><?=$post['date'] ?></b></p>
                 </div>
             </div>

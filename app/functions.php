@@ -40,6 +40,14 @@ function countCategory($id){
     $db = new QueryBuilder($pdo,$query);
     return count($db->getAllbyID('posts', 'id_category', 'id', $id ));
 }
+function getUserName($id){
+    global $container;
+    $pdo = $container->get('PDO');
+    $query = $container->get('Aura\SqlQuery\QueryFactory');
+    $db = new QueryBuilder($pdo,$query);
+    $user =  $db->getOne('users',$id);
+    return $user['username'];
+}
 
 
 

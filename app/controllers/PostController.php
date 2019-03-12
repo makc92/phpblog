@@ -24,15 +24,8 @@ class PostController
         $this->engine = $engine;
         $this->auth = $auth;
         $this->image = $image;
-        /*Вот это правильно ли?*/
         $this->validate = $validate;
         $this->filter = $this->validate->newSubjectFilter();
-        /*Вот это правильно ли?*/
-        if (!$this->auth->isLoggedIn()) {
-            flash()->error('Ты не залогинен');
-            redirect("/");
-            die;
-        }
     }
 
     public function index()
@@ -65,12 +58,14 @@ class PostController
             'title' => $_POST['title'],
             'content' => $_POST['content'],
             'category' => $_POST['category'],
+            'image'=>$_FILES['file']['name']
         ];
 
         /*Сама фильрация*/
         $this->filter->validate("title")->isNotBlank()->setMessage('Вы не заполнили название статьи');
         $this->filter->validate("content")->isNotBlank()->setMessage('Вы не заполнили контент статьи');
         $this->filter->validate("category")->isNotBlank()->is('int')->setMessage('Категория выбрана неверное');
+        $this->filter->validate('image')->isNotBlank()->setMessage('Картинка не выбрана');
         $this->validate($filterData);
 
         /*Загрузка основных данных после валидации*/

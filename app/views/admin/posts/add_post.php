@@ -8,6 +8,7 @@ $auth = auth();
         <i class="fa fa-table"></i>
         Добавить запись
     </div>
+    <?=flash(); ?>
     <div class="card-body">
         <form action="/admin/add_post" method="post" enctype="multipart/form-data">
             <div class="form-group my-3">

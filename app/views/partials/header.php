@@ -27,7 +27,7 @@ $auth = auth();
                     <?php if($auth->hasRole(\Delight\Auth\Role::ADMIN)): ?>
                         <a href="/admin" class="btn btn-success mr-4">Войти в админку</a>
                     <?php endif; ?>
-                    <?php if(!$auth->isLoggedIn()): ?>
+                    <?php if(!$auth->isLoggedIn() && !$auth->isBanned()): ?>
                     <a href="/login" class="btn btn-primary ml-4">Войти</a>
                     <a href="/register" class="btn btn-success ml-4">Зарегистрироватся</a>
                     <?php else: ?>

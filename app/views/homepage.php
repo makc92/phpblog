@@ -5,6 +5,7 @@
     <div class="row">
         <?php foreach ($postsView as $post): ?>
         <?php $category = getCategory($post['id_category']); ?>
+
         <div class="col-12">
             <div class="post mb-4">
                 <div class="post-image mr-3 ">
@@ -17,6 +18,9 @@
                     <p><?=$post['content']?></p>
                     <p class="category">Категория статьи <b><a href="/category/<?=$category['name']; ?>"><?=$category['name']; ?></a></b></p>
                     <p>Запись добавлена: <b><?=$post['date'] ?></b></p>
+                    <p>Автор:
+                        <b><?php echo getUserName($post['id_user']);  ?></b>
+                    </p>
                     <a href="/post/<?=$post['id']?>" class="btn btn-primary">Читать запись</a>
                 </div>
             </div>

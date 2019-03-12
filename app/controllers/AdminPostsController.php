@@ -9,6 +9,7 @@
 namespace App\controllers;
 
 use App\Classes\QueryBuilder;
+use Aura\Filter\FilterFactory;
 use League\Plates\Engine;
 use Delight\Auth\Auth;
 use JasonGrimes\Paginator;
@@ -16,12 +17,21 @@ use App\classes\ImageManager;
 
 class AdminPostsController
 {
-    public function __construct(QueryBuilder $db, Engine $engine, Auth $auth, ImageManager $image)
+    private $filter;
+    private $engine;
+    private $db;
+    private $auth;
+    private $image;
+    private $validate;
+    
+    public function __construct(QueryBuilder $db, Engine $engine, Auth $auth, ImageManager $image, FilterFactory $validate)
     {
         $this->db = $db;
         $this->engine = $engine;
         $this->auth = $auth;
         $this->image = $image;
+        $this->validate = $validate;
+        $this->filter = $this->validate->newSubjectFilter();
         if (!$this->auth->hasRole(\Delight\Auth\Role::ADMIN)) {
             echo $this->engine->render('404');
             die;
@@ -46,6 +56,20 @@ class AdminPostsController
 
     public function add_post()
     {
+        $filterData = [
+            'title' => $_POST['title'],
+            'content' => $_POST['content'],
+            'category' => $_POST['category'],
+            'image'=>$_FILES['file']['name']
+        ];
+
+        /*Сама фильрация*/
+        $this->filter->validate("title")->isNotBlank()->setMessage('Вы не заполнили название статьи');
+        $this->filter->validate("content")->isNotBlank()->setMessage('Вы не заполнили контент статьи');
+        $this->filter->validate("category")->isNotBlank()->is('int')->setMessage('Категория выбрана неверное');
+        $this->filter->validate('image')->isNotBlank()->setMessage('Картинка не выбрана');
+        $this->validate($filterData);
+
         $image = $this->image->uploadImage($_FILES['file']);
         $data = [
             'title' => $_POST['title'],
@@ -88,5 +112,17 @@ class AdminPostsController
         $this->db->update('posts', $data, $id);
         flash()->success('Запись успешно обновлена');
         redirect("/admin/posts");
+    }
+    public function validate($data)
+    {
+        $valid = $this->filter->apply($data);
+        if (!$valid) {
+            $failures = $this->filter->getFailures();
+            $messages = $failures->getMessages();
+            foreach ($messages as $message) {
+                flash()->error($message);
+            }
+            redirect($_SERVER['HTTP_REFERER']);
+        }
     }
 }
