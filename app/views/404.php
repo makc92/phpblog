@@ -15,7 +15,7 @@
             <h1 class="text-danger">404</h1>
             <h3>Page Not Found !</h3>
             <p>Обратитесь к администратору</p>
-            <a href="/" class="btn blog">Назад</a> </div>
+            <a href="/" class="btn blog">Назад</a></div>
     </div>
 </section>
 </body>

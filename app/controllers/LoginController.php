@@ -1,5 +1,7 @@
 <?php
+
 namespace App\controllers;
+
 use League\Plates\Engine;
 use Delight\Auth\Auth;
 
@@ -23,14 +25,13 @@ class LoginController
     {
         try {
             if (isset($_POST['remember'])) {
-                $rememberDuration = (int) (60 * 60 * 24 * 365.25);
-            }
-            else {
+                $rememberDuration = (int)(60 * 60 * 24 * 365.25);
+            } else {
                 $rememberDuration = '';
             }
-            $this->auth->login($_POST['email'], $_POST['password'],$rememberDuration);
+            $this->auth->login($_POST['email'], $_POST['password'], $rememberDuration);
             /*Проверка на Бан*/
-            if($this->auth->isBanned()) {
+            if ($this->auth->isBanned()) {
                 flash()->error('Вы забанены');
                 $this->auth->logOut();
                 redirect('/login');
@@ -40,17 +41,13 @@ class LoginController
             flash()->success('Вы успешно вошли');
             redirect("/profile");
             die;
-        }
-        catch (\Delight\Auth\InvalidEmailException $e) {
+        } catch (\Delight\Auth\InvalidEmailException $e) {
             flash()->error(['Неверный email']);
-        }
-        catch (\Delight\Auth\InvalidPasswordException $e) {
+        } catch (\Delight\Auth\InvalidPasswordException $e) {
             flash()->error(['Неверный пароль']);
-        }
-        catch (\Delight\Auth\EmailNotVerifiedException $e) {
+        } catch (\Delight\Auth\EmailNotVerifiedException $e) {
             flash()->error(['Email не подтвержден']);
-        }
-        catch (\Delight\Auth\TooManyRequestsException $e) {
+        } catch (\Delight\Auth\TooManyRequestsException $e) {
             flash()->error(['Большое количество попыток']);
         }
         redirect("/login");

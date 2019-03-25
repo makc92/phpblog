@@ -23,7 +23,7 @@ class AdminPostsController
     private $auth;
     private $image;
     private $validate;
-    
+
     public function __construct(QueryBuilder $db, Engine $engine, Auth $auth, ImageManager $image, FilterFactory $validate)
     {
         $this->db = $db;
@@ -56,11 +56,12 @@ class AdminPostsController
 
     public function add_post()
     {
+        /*данные для фильтрации*/
         $filterData = [
             'title' => $_POST['title'],
             'content' => $_POST['content'],
             'category' => $_POST['category'],
-            'image'=>$_FILES['file']['name']
+            'image' => $_FILES['file']['name']
         ];
 
         /*Сама фильрация*/
@@ -82,37 +83,43 @@ class AdminPostsController
         flash()->success('Запись успешно добавлена');
         redirect("/admin/posts");
     }
-    public function delete_post($id){
+
+    public function delete_post($id)
+    {
         $filename = $this->db->getOne('posts', $id);
         $this->db->delete('posts', $id);
         $this->image->deleteImage($filename['image']);
         flash()->success('Запись успешно удалена');
         redirect("/admin/posts");
     }
-    public function edit_post($id){
+
+    public function edit_post($id)
+    {
         $post = $this->db->getOne('posts', $id);
-        echo $this->engine->render('admin/posts/edit_post', ['post'=>$post]);
+        echo $this->engine->render('admin/posts/edit_post', ['post' => $post]);
     }
-    public function update_post($id) {
+
+    public function update_post($id)
+    {
         $oldImage = substr($_POST['oldImage'], 5); //название старой картинки, чтобы удалить
         if (empty($_FILES['file']['tmp_name'])) {
             $image = $oldImage;
-        }
-        else {
+        } else {
             $image = $this->image->uploadImage($_FILES['file']);
             $this->image->deleteImage($oldImage);
         }
 
         $data = [
-            'title'=> $_POST['title'],
-            'content'=> $_POST['content'],
+            'title' => $_POST['title'],
+            'content' => $_POST['content'],
             'image' => $image,
-            'id_category'=> $_POST['category']
+            'id_category' => $_POST['category']
         ];
         $this->db->update('posts', $data, $id);
         flash()->success('Запись успешно обновлена');
         redirect("/admin/posts");
     }
+
     public function validate($data)
     {
         $valid = $this->filter->apply($data);

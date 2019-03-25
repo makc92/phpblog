@@ -1,32 +1,32 @@
 <?php
+
 use Aura\SqlQuery\QueryFactory;
 use Delight\Auth\Auth;
 use DI\ContainerBuilder;
 use Intervention\Image\ImageManager;
 use League\Plates\Engine;
+
 $templates = new League\Plates\Engine('../app/views');
 $ContainerBuilder = new ContainerBuilder();
 $ContainerBuilder->addDefinitions(array(
-    Engine::class => function(){
+    Engine::class => function () {
         return new Engine('../app/views');
     },
-    PDO::class => function(){
+    PDO::class => function () {
         $driver = "mysql";
         $host = "localhost";
         $db_name = "phpblog";
         $user = "root";
         $password = "";
-
         return new PDO("$driver:host=$host;dbname=$db_name", $user, $password);
-        //return new PDO("$db[driver]:host=$db[host];dbname=$db[db_name]", $db['user'], $db['password']);
     },
-    Auth::class => function($container){
+    Auth::class => function ($container) {
         return new Auth($container->get('PDO'));
     },
-    QueryFactory::class => function(){
+    QueryFactory::class => function () {
         return new QueryFactory('mysql');
     },
-    ImageManager::class=>function(){
+    ImageManager::class => function () {
         return new ImageManager(array('driver' => 'imagick'));
     }
 ));

@@ -23,22 +23,19 @@ class VerifyController
             flash()->success('Вы подтвердили свой email');
             redirect("/register");
             die;
-        }
-        catch (\Delight\Auth\InvalidSelectorTokenPairException $e) {
+        } catch (\Delight\Auth\InvalidSelectorTokenPairException $e) {
             flash()->error('Некорректный токен');
-        }
-        catch (\Delight\Auth\TokenExpiredException $e) {
+        } catch (\Delight\Auth\TokenExpiredException $e) {
             flash()->error('Срок действия токена истек');
-        }
-        catch (\Delight\Auth\UserAlreadyExistsException $e) {
+        } catch (\Delight\Auth\UserAlreadyExistsException $e) {
             flash()->error('Пользователь уже существует');
-        }
-        catch (\Delight\Auth\TooManyRequestsException $e) {
+        } catch (\Delight\Auth\TooManyRequestsException $e) {
             flash()->error('Слишком много попыток');
         }
         redirect("/register");
         die;
     }
+
     public function change_email()
     {
         try {
@@ -47,17 +44,13 @@ class VerifyController
             flash()->success('Email успешно изменен');
             redirect("/profile");
             die;
-        }
-        catch (\Delight\Auth\InvalidSelectorTokenPairException $e) {
+        } catch (\Delight\Auth\InvalidSelectorTokenPairException $e) {
             flash()->error('Некорректный токен');
-        }
-        catch (\Delight\Auth\TokenExpiredException $e) {
+        } catch (\Delight\Auth\TokenExpiredException $e) {
             flash()->error('Срок действия токена истек');
-        }
-        catch (\Delight\Auth\UserAlreadyExistsException $e) {
+        } catch (\Delight\Auth\UserAlreadyExistsException $e) {
             flash()->error('Пользователь уже существует');
-        }
-        catch (\Delight\Auth\TooManyRequestsException $e) {
+        } catch (\Delight\Auth\TooManyRequestsException $e) {
             flash()->error('Слишком много попыток');
         }
         redirect("/register");

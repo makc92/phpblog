@@ -1,7 +1,7 @@
 <?php $this->layout('auth/layout'); ?>
 <div class="col-6">
     <h2 class="my-4">Войти</h2>
-    <?=flash() ?>
+    <?= flash() ?>
     <form action="/login" method="post">
         <div class="form-group">
             <input type="email" class="form-control" placeholder="Email" name="email">

@@ -1,5 +1,7 @@
 <?php
+
 namespace App\classes;
+
 use SimpleMail;
 
 
@@ -9,10 +11,10 @@ class Mailer
 
     public function __construct(SimpleMail $mail)
     {
-        $this->mailer= $mail;
+        $this->mailer = $mail;
     }
 
-    public function send($email,$text)
+    public function send($email, $text)
     {
         SimpleMail::make()
             ->setTo($email, 'Пользователь')

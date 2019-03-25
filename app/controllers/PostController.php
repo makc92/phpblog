@@ -58,7 +58,7 @@ class PostController
             'title' => $_POST['title'],
             'content' => $_POST['content'],
             'category' => $_POST['category'],
-            'image'=>$_FILES['file']['name']
+            'image' => $_FILES['file']['name']
         ];
 
         /*Сама фильрация*/
@@ -107,8 +107,7 @@ class PostController
         $oldImage = substr($_POST['oldImage'], 5); //название старой картинки, чтобы удалить
         if (empty($_FILES['file']['tmp_name'])) {
             $image = $oldImage;
-        }
-        else {
+        } else {
             $image = $this->image->uploadImage($_FILES['file']);
             $this->image->deleteImage($oldImage);
         }

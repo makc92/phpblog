@@ -8,7 +8,7 @@
     <div id="content-wrapper">
 
         <div class="container-fluid">
-            <?=$this->section('content')?>
+            <?= $this->section('content') ?>
         </div>
         <!-- /.container-fluid -->
 

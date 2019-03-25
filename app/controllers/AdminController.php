@@ -7,6 +7,7 @@
  */
 
 namespace App\controllers;
+
 use App\Classes\QueryBuilder;
 use JasonGrimes\Paginator;
 use League\Plates\Engine;
@@ -28,10 +29,14 @@ class AdminController
             die;
         }
     }
-    public  function index(){
-        echo $this->engine->render('admin/homepage', ['title'=>'Админ панель']);
+
+    public function index()
+    {
+        echo $this->engine->render('admin/homepage', ['title' => 'Админ панель']);
     }
-    public  function logout(){
+
+    public function logout()
+    {
         $this->auth->logOut();
         redirect("/");
         die;

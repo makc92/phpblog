@@ -7,6 +7,7 @@
  */
 
 namespace App\controllers;
+
 use App\Classes\QueryBuilder;
 use League\Plates\Engine;
 use Delight\Auth\Auth;
@@ -24,7 +25,9 @@ class AdminUsersController
             die;
         }
     }
-    public  function index(){
+
+    public function index()
+    {
         $totalItems = $this->db->getAll('users');
         $currentPage = $_GET['page'] ?? 1;
         $itemsPerPage = 10;
@@ -42,6 +45,7 @@ class AdminUsersController
         $this->db->update('users', $data, $id);
         redirect("/admin/users");
     }
+
     public function unban($id)
     {
         $data = [
@@ -58,25 +62,24 @@ class AdminUsersController
             try {
                 $this->auth->admin()->addRoleForUserById($id, \Delight\Auth\Role::ADMIN);
                 redirect("/admin/users");
-            }
-            catch (\Delight\Auth\UnknownIdException $e) {
+            } catch (\Delight\Auth\UnknownIdException $e) {
                 flash()->error(['неверный ID']);
                 redirect("/admin/users");
             }
-        }
-        catch (\Delight\Auth\UnknownIdException $e) {
+        } catch (\Delight\Auth\UnknownIdException $e) {
             flash()->error(['неверный ID']);
             redirect("/admin/users");
         }
 
     }
-    public function deleteUser($id){
+
+    public function deleteUser($id)
+    {
         try {
             $this->auth->admin()->deleteUserById($id);
             flash()->success(["Пользователь Удален"]);
             redirect("/admin/users");
-        }
-        catch (\Delight\Auth\UnknownIdException $e) {
+        } catch (\Delight\Auth\UnknownIdException $e) {
             flash()->error(['неверный ID']);
             redirect("/admin/users");
         }
